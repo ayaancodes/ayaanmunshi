@@ -5,6 +5,8 @@ interface ProjectCardProps {
     id: number
     title: string
     role: string
+    date: string
+    location: string
     description: string
     tech: string[]
     link: string
@@ -29,6 +31,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {/* Role */}
           <p className="font-mono text-[0.7rem] text-zinc-500 uppercase tracking-wide">
             {project.role}
+          </p>
+          <p className="text-[11px] text-zinc-500">
+
+
+            {project.date} · {project.location}
           </p>
 
           {/* Description */}

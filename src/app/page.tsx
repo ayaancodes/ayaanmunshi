@@ -13,6 +13,8 @@ const projects = [
     id: 1,
     title: 'RBC Capital Markets',
     role: 'Software Engineer Intern - US Cash Management Team',
+    date: 'May 2025 - August 2025',
+    location: 'Toronto, Canada',
     description:
       'Developed a patent-pending agentic system optimizing transaction workflows.',
     tech: ['Python', 'LangChain', 'FastAPI', 'PostgreSQL', 'Redis'],
@@ -22,6 +24,8 @@ const projects = [
     id: 2,
     title: 'RBC Capital Markets ',
     role: 'Software Engineeer Intern - Enterprise Market Risk Team',
+    date: 'May 2024 - August 2024',
+    location: 'Toronto, Canada',
     description:
       'Developed an web service automating delivery of real-time risk analytics',
     tech: ['JavaScript', 'Exchange Web Services', 'Redis', 'Express'],
@@ -30,6 +34,8 @@ const projects = [
   {
     id: 3,
     title: 'Beats by Dre',
+    date: 'Feb 2025 - March 2025',
+    location: 'California, USA (Remote)',
     role: 'Data Analytics Intern - Consumer Insights Team',
     description:
       'Designed Python analytics uncovering Gen Z listening trends to inform product strategy'
@@ -41,6 +47,8 @@ const projects = [
     id: 4,
     title: 'Canam Group',
     role: 'Engineering Intern',
+    date: 'May 2023 - August 2023',
+    location: 'Mississauga, Canada',
     description:
       'Engineered a live telemetry-driven shipment tracker optimizing delivery efficiency ',
     tech: ['C#', 'SQL', 'Azure', 'Grafana'],
