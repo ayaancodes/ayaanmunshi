@@ -87,7 +87,8 @@ const projects = [
         description:
             'Engineered a live telemetry-driven shipment tracker optimizing delivery efficiency ',
         tech: ['C#', 'SQL', 'Azure', 'Grafana'],
-        link: 'https://www.canam.com/en/'
+        link: 'https://www.canam.com/en/',
+        image: '/experience/canam.jpg'
     }
 ]
 
