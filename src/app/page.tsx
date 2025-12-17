@@ -52,16 +52,16 @@ export default function Home() {
     <>
       <Header />
 
-      <h1 className="text-[2.5rem] font-serif tracking-tight text-primary">
+     <h1 className="text-[2.5rem] font-serif tracking-tight text-primary">
         Ayaan Munshi
       </h1>
 
       <div className="flex items-center gap-1.5 font-medium tracking-tight">
         <h2 className="text-base text-foreground">engineer</h2>
         <span className="text-foreground/50">•</span>
-        <h2 className="text-base text-foreground">pathfinder</h2>
+        <h2 className="text-base text-foreground">student</h2>
         <span className="text-foreground/50">•</span>
-        <h2 className="text-base text-foreground">calisthenic</h2>
+        <h2 className="text-base text-foreground">pathfinder</h2>
       </div>
 
       <p className="pt-4 text-sm text-foreground leading-relaxed">
@@ -70,7 +70,7 @@ export default function Home() {
         <span className="text-primary"> politics </span> drives incentives, and how
         <span className="text-primary"> technology </span> amplifies them both.
         <br /><br />
-        I’ve built and shipped software across many different industries, on track to total <span className="text-primary">24</span> months of internship experience by senior year.
+        I’ve built and shipped software across many different industries, on track to total <span className="text-primary">2 years</span> of internship experience by my senior year.
 
         <Link
           href="/experiences"
@@ -82,8 +82,8 @@ export default function Home() {
         </Link>
 
         <br /><br />
-        Outside of work, you’ll find me playing soccer, learning poker, or traveling.
-      </p>
+        Right now, you’ll find me getting back into soccer, learning poker, or writing about things I'm interested in.
+      </p> 
 
 
 
