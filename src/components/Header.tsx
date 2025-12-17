@@ -31,6 +31,12 @@ export default function Header({ showHomeLink = false }: HeaderProps) {
           <span className="text-primary">thoughts</span>
         </Link>
         <Link
+          href="/experiences"
+          className="hover:text-accent underline-offset-4 transition duration-150 ease-in-out hover:underline"
+        >
+          <span className="text-primary">experiences</span>
+        </Link>
+        <Link
           href="/colophon"
           className="hover:text-accent underline-offset-4 transition duration-150 ease-in-out hover:underline"
         >
