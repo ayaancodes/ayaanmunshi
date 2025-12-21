@@ -52,7 +52,7 @@ export default function Home() {
     <>
       <Header />
 
-     <h1 className="text-[2.5rem] font-serif tracking-tight text-primary">
+      <h1 className="text-[2.5rem] font-serif tracking-tight text-primary">
         Ayaan Munshi
       </h1>
 
@@ -70,44 +70,63 @@ export default function Home() {
         <span className="text-primary"> politics </span> drives incentives, and how
         <span className="text-primary"> technology </span> amplifies them both.
         <br /><br />
-        I’ve built and shipped software across many different industries, on track to total <span className="text-primary">2 years</span> of internship experience by my senior year.
+        I’ve built and shipped software across many different industries, on track to total{' '}
+        <span className="text-primary">2 years</span> of internship experience before my senior year.
+      </p>
+{/* EXPLORE */}
+<section className="pt-10">
+  <h2 className="font-medium tracking-tight text-foreground">Explore</h2>
 
-        <Link
-          href="/experiences"
-          className="group -mx-3 block w-fit rounded-lg px-3 py-2 transition-all duration-300 md:hover:bg-hoverColor/10"
-        >
-          <span className="text-sm text-primary underline underline-offset-4 md:group-hover:text-accent">
-            view my work experiences
-          </span>
-        </Link>
+  <div className="pt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+    <Link
+      href="/experiences"
+      className="group rounded-xl border border-white/10 bg-hoverColor/5 px-4 py-3 transition-all duration-200 hover:border-white/20 hover:bg-hoverColor/10"
+    >
+      <p className="text-sm text-primary group-hover:text-accent">Work</p>
+      <p className="pt-1 text-sm text-foreground/80 leading-relaxed">
+        Roles, teams, and tech I’ve worked on.
+      </p>
+    </Link>
 
-        <br /><br />
-        Right now, you’ll find me getting back into soccer, learning poker, or writing about things I'm interested in.
-      </p> 
+    <Link
+      href="/projects"
+      className="group rounded-xl border border-white/10 bg-hoverColor/5 px-4 py-3 transition-all duration-200 hover:border-white/20 hover:bg-hoverColor/10"
+    >
+      <p className="text-sm text-primary group-hover:text-accent">Projects</p>
+      <p className="pt-1 text-sm text-foreground/80 leading-relaxed">
+        Independent builds and experiments.
+      </p>
+    </Link>
+
+    <Link
+      href="/thoughts"
+      className="group rounded-xl border border-white/10 bg-hoverColor/5 px-4 py-3 transition-all duration-200 hover:border-white/20 hover:bg-hoverColor/10"
+    >
+      <p className="text-sm text-primary group-hover:text-accent">Writing</p>
+      <p className="pt-1 text-sm text-foreground/80 leading-relaxed">
+        Notes on markets, systems, and poker.
+      </p>
+    </Link>
+
+    <Link
+      href="/play"
+      className="group rounded-xl border border-white/10 bg-hoverColor/5 px-4 py-3 transition-all duration-200 hover:border-white/20 hover:bg-hoverColor/10"
+    >
+      <p className="text-sm text-primary group-hover:text-accent">Play</p>
+      <p className="pt-1 text-sm text-foreground/80 leading-relaxed">
+        Small interactive experiments. For fun.
+      </p>
+    </Link>
+  </div>
+</section>
+
+
 
 
 
       <SocialLinks />
 
-      <section className="pt-8">
-        <Link
-          href="/experiences"
-          className="group -mx-3 block w-fit rounded-lg px-3 py-2 transition-all duration-300 md:hover:bg-hoverColor/10"
-        >
-          <span className="text-sm text-primary underline underline-offset-4 md:group-hover:text-accent">
-            view my work experiences
-          </span>
-        </Link>
-      </section>
 
-      <section className="pt-8">
-        <h2 className="font-medium tracking-tight text-foreground">Blog</h2>
-        <div className="pt-1.5">
-          {blogs.map(blog => (
-            <BlogCard key={blog.id} blog={blog} />
-          ))}
-        </div>
-      </section>
 
       <Footer />
     </>
