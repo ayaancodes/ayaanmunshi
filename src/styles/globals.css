@@ -26,6 +26,7 @@
   --body: #888888;
   --hover-color: #111111;
   --accent: #0070f3;
+  
 }
 
 @media (prefers-color-scheme: dark) {
@@ -123,3 +124,18 @@ body {
 }
 @keyframes slide { 0%{transform:translateX(0)} 100%{transform:translateX(56px)} }
 
+:root {
+  --explore-hover-surface: rgba(130, 100, 255, 0.06);
+  --explore-hover-border: rgba(130, 100, 255, 0.18);
+}
+
+
+.hover-accent {
+  color: rgba(255, 255, 255, 0.88); /* softer than pure white */
+  font-weight: 400;               /* same as body text */
+  transition: color 150ms ease;
+}
+
+.hover-accent:hover {
+  color: rgba(170, 150, 255, 0.85); /* soft purple */
+}

@@ -66,59 +66,64 @@ export default function Home() {
 
       <p className="pt-4 text-sm text-foreground leading-relaxed">
         Hi, I’m Ayaan, a software engineer fascinated by how
-        <span className="text-primary"> markets </span> shape systems, how
-        <span className="text-primary"> politics </span> drives incentives, and how
-        <span className="text-primary"> technology </span> amplifies them both.
+        <span className="hover-accent"> markets </span> shape systems, how
+        <span className="hover-accent"> politics </span> drives incentives, and how
+        <span className="hover-accent"> technology </span> amplifies them both.
         <br /><br />
         I’ve built and shipped software across many different industries, on track to total{' '}
-        <span className="text-primary">2 years</span> of internship experience before my senior year.
+        <span className="hover-accent">2 years</span> of internship experience before my senior year.
       </p>
-{/* EXPLORE */}
-<section className="pt-10">
-  <h2 className="font-medium tracking-tight text-foreground">Explore</h2>
 
-  <div className="pt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-    <Link
-      href="/experiences"
-      className="group rounded-xl border border-white/10 bg-hoverColor/5 px-4 py-3 transition-all duration-200 hover:border-white/20 hover:bg-hoverColor/10"
-    >
-      <p className="text-sm text-primary group-hover:text-accent">Work</p>
-      <p className="pt-1 text-sm text-foreground/80 leading-relaxed">
-        Roles, teams, and tech I’ve worked on.
-      </p>
-    </Link>
 
-    <Link
-      href="/projects"
-      className="group rounded-xl border border-white/10 bg-hoverColor/5 px-4 py-3 transition-all duration-200 hover:border-white/20 hover:bg-hoverColor/10"
-    >
-      <p className="text-sm text-primary group-hover:text-accent">Projects</p>
-      <p className="pt-1 text-sm text-foreground/80 leading-relaxed">
-        Independent builds and experiments.
-      </p>
-    </Link>
+      {/* EXPLORE */}
+      <section className="pt-10">
+        <h2 className="font-medium tracking-tight text-foreground">Explore</h2>
 
-    <Link
-      href="/thoughts"
-      className="group rounded-xl border border-white/10 bg-hoverColor/5 px-4 py-3 transition-all duration-200 hover:border-white/20 hover:bg-hoverColor/10"
-    >
-      <p className="text-sm text-primary group-hover:text-accent">Writing</p>
-      <p className="pt-1 text-sm text-foreground/80 leading-relaxed">
-        Notes on markets, systems, and poker.
-      </p>
-    </Link>
-
-    <Link
-      href="/play"
-      className="group rounded-xl border border-white/10 bg-hoverColor/5 px-4 py-3 transition-all duration-200 hover:border-white/20 hover:bg-hoverColor/10"
-    >
-      <p className="text-sm text-primary group-hover:text-accent">Play</p>
-      <p className="pt-1 text-sm text-foreground/80 leading-relaxed">
-        Small interactive experiments. For fun.
-      </p>
-    </Link>
-  </div>
-</section>
+        <div className="pt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+          {[
+            {
+              href: '/experiences',
+              title: 'Experiences',
+              desc: 'Roles, teams, and tech I’ve worked on.',
+            },
+            {
+              href: '/projects',
+              title: 'Projects',
+              desc: 'Independent builds and experiments.',
+            },
+            {
+              href: '/thoughts',
+              title: 'Writing',
+              desc: 'Notes on markets, systems, and poker.',
+            },
+            {
+              href: '/play',
+              title: 'Play',
+              desc: 'Small interactive experiments. For fun.',
+            },
+          ].map(({ href, title, desc }) => (
+            <Link
+              key={href}
+              href={href}
+              className="
+          group rounded-xl
+          border border-white/10
+          px-4 py-3
+          transition-all duration-200
+          hover:border-[var(--explore-hover-border)]
+          hover:bg-[var(--explore-hover-surface)]
+        "
+            >
+              <p className="text-sm font-medium tracking-tight text-foreground group-hover:text-primary">
+                {title}
+              </p>
+              <p className="pt-1 text-sm text-foreground/80 leading-relaxed">
+                {desc}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
 
 
