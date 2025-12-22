@@ -7,43 +7,20 @@ import BlogCard from '@/components/BlogCard'
 import Link from 'next/link'
 import Image from 'next/image'
 
-
-
 const blogs = [
   {
     id: 1,
     title: 'why we built shipfree',
     views: 918,
     date: 'Feb 21, 2025',
-    link: '/blog/why-we-built-shipfree'
+    link: '/blog/why-we-built-shipfree',
   },
   {
     id: 2,
     title: 'Creating Grainy Textures in Figma',
     views: 423,
     date: 'Mar 15, 2025',
-    link: '/blog/grainy-textures'
-  }
-]
-
-const photos = [
-  {
-    id: 1,
-    src: '/photos/me.png',
-    alt: 'Workspace setup',
-    className: 'col-span-2 row-span-6'
-  },
-  {
-    id: 2,
-    src: '/photos/cat.png',
-    alt: 'My Cute cat',
-    className: 'col-span-2 row-span-3'
-  },
-  {
-    id: 3,
-    src: '/photos/setup.png',
-    alt: 'setup',
-    className: 'col-span-2 row-span-3'
+    link: '/blog/grainy-textures',
   },
 ]
 
@@ -70,10 +47,10 @@ export default function Home() {
         <span className="hover-accent"> politics </span> drives incentives, and how
         <span className="hover-accent"> technology </span> amplifies them both.
         <br /><br />
-        I’ve built and shipped software across many different industries, on track to total{' '}
-        <span className="hover-accent">2 years</span> of internship experience before my senior year.
+        I’ve built and shipped software across many different industries, on track
+        to total <span className="hover-accent">2 years</span> of internship
+        experience before my senior year.
       </p>
-
 
       {/* EXPLORE */}
       <section className="pt-10">
@@ -106,32 +83,35 @@ export default function Home() {
               key={href}
               href={href}
               className="
-          group rounded-xl
+          group explore-link rounded-xl
           border border-white/10
-          px-4 py-3
+          px-4 py-2.5
           transition-all duration-200
           hover:border-[var(--explore-hover-border)]
           hover:bg-[var(--explore-hover-surface)]
         "
             >
-              <p className="text-sm font-medium tracking-tight text-foreground group-hover:text-primary">
-                {title}
-              </p>
-              <p className="pt-1 text-sm text-foreground/80 leading-relaxed">
-                {desc}
-              </p>
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-sm font-medium tracking-tight text-foreground group-hover:text-primary">
+                    {title}
+                  </p>
+                  <p className="pt-0.5 text-xs text-foreground/75 leading-snug">
+                    {desc}
+                  </p>
+                </div>
+
+                <span className="explore-arrow text-sm text-foreground/70">
+                  →
+                </span>
+              </div>
             </Link>
           ))}
         </div>
       </section>
 
 
-
-
-
       <SocialLinks />
-
-
 
       <Footer />
     </>

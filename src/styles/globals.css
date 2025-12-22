@@ -125,9 +125,11 @@ body {
 @keyframes slide { 0%{transform:translateX(0)} 100%{transform:translateX(56px)} }
 
 :root {
-  --explore-hover-surface: rgba(130, 100, 255, 0.06);
-  --explore-hover-border: rgba(130, 100, 255, 0.18);
+  --explore-hover-surface: rgba(140, 110, 255, 0.085);
+  --explore-hover-border: rgba(140, 110, 255, 0.28);
+  --explore-hover-text: rgba(185, 165, 255, 0.95);
 }
+
 
 
 .hover-accent {
@@ -138,4 +140,19 @@ body {
 
 .hover-accent:hover {
   color: rgba(170, 150, 255, 0.85); /* soft purple */
+}
+
+.explore-link {
+  cursor: pointer;
+}
+
+.explore-arrow {
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.group:hover .explore-arrow {
+  opacity: 0.9;
+  transform: translateX(0);
 }
