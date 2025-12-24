@@ -48,17 +48,18 @@ export default function RootLayout({
         <Analytics />
         <main className="font-sans h-screen snap-y snap-mandatory overflow-y-scroll scroll-smooth">
           {/* Section 1 — Landing (full viewport hero) */}
-          <section className="h-screen snap-start">
-            <LandingOverlay />
+          <section className="h-screen snap-start snap-always">
+          <LandingOverlay />
           </section>
 
           {/* Section 2 — Main portfolio content */}
           <section
             id="content"
-            className="min-h-screen snap-start mx-auto my-8 max-w-[400px] px-4 md:my-16 md:max-w-[600px]"
-          >
+            className="min-h-screen snap-start snap-always mx-auto max-w-[400px] px-4 pt-10 md:max-w-[600px]"
+            >
             {children}
           </section>
+
         </main>
       </body>
     </html>

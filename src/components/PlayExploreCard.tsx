@@ -6,8 +6,14 @@ import { useRouter } from 'next/navigation'
 export default function PlayExploreCard({ unlocked }: { unlocked: boolean }) {
   const router = useRouter()
   const [phase, setPhase] = React.useState<'idle' | 'decrypting' | 'done'>('idle')
-  const [display, setDisplay] = React.useState('')
   const [desc, setDesc] = React.useState('Try clicking something on this page...')
+
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
 
   const target = 'Play Blackjack'
   const charset =
@@ -21,19 +27,31 @@ export default function PlayExploreCard({ unlocked }: { unlocked: boolean }) {
     return out
   }
 
+  const makeGlitch = () => `${randomString(8)} ${randomString(10)} ${randomString(8)}`
+  const [display, setDisplay] = React.useState<string>('') // deterministic for SSR/hydration
+
   // Idle → glitch text every 0.5s (only while locked)
   React.useEffect(() => {
+    if (!mounted) return
     if (phase !== 'idle') return
     if (unlocked) return
 
-    const tick = () => {
-      setDisplay(`${randomString(8)} ${randomString(10)} ${randomString(8)}`)
-    }
-
+    const tick = () => setDisplay(makeGlitch())
     tick()
+
     const id = setInterval(tick, 500)
     return () => clearInterval(id)
-  }, [phase, unlocked])
+  }, [mounted, phase, unlocked])
+
+
+  // Reset back to locked state when unlocked becomes false
+  React.useEffect(() => {
+    if (!unlocked) {
+      setPhase('idle')
+      setDesc('Try clicking something on this page...')
+      setDisplay(makeGlitch())
+    }
+  }, [unlocked])
 
   // When unlocked, start decrypt automatically
   React.useEffect(() => {

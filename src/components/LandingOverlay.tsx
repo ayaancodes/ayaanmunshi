@@ -63,11 +63,17 @@ export default function LandingOverlay() {
         {/* subtle scroll cue */}
         <div className="pointer-events-auto absolute bottom-6 left-0 right-0 flex justify-center">
           <button
-            onClick={() =>
-              document
-                .querySelector("#content")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+            onClick={() => {
+              const container = document.querySelector('main')
+              const content = document.querySelector('#content') as HTMLElement | null
+              if (!container || !content) return
+
+              container.scrollTo({
+                top: content.offsetTop,
+                behavior: 'smooth',
+              })
+            }}
+
             className="group inline-flex items-center gap-3 text-xs text-zinc-400/80 hover:text-zinc-200 transition"
             aria-label="Scroll to content"
           >
