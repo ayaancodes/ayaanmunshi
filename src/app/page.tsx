@@ -1,30 +1,15 @@
 'use client'
 
+import React from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SocialLinks from '@/components/SocialLinks'
-import BlogCard from '@/components/BlogCard'
 import Link from 'next/link'
-import Image from 'next/image'
-
-const blogs = [
-  {
-    id: 1,
-    title: 'why we built shipfree',
-    views: 918,
-    date: 'Feb 21, 2025',
-    link: '/blog/why-we-built-shipfree',
-  },
-  {
-    id: 2,
-    title: 'Creating Grainy Textures in Figma',
-    views: 423,
-    date: 'Mar 15, 2025',
-    link: '/blog/grainy-textures',
-  },
-]
+import PlayExploreCard from '@/components/PlayExploreCard'
 
 export default function Home() {
+  const [blackjackUnlocked, setBlackjackUnlocked] = React.useState(false)
+
   return (
     <>
       <Header />
@@ -58,38 +43,21 @@ export default function Home() {
 
         <div className="pt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
           {[
-            {
-              href: '/experiences',
-              title: 'Experiences',
-              desc: 'Roles, teams, and tech I’ve worked on.',
-            },
-            {
-              href: '/projects',
-              title: 'Projects',
-              desc: 'Independent builds and experiments.',
-            },
-            {
-              href: '/thoughts',
-              title: 'Writing',
-              desc: 'Notes on markets, systems, and poker.',
-            },
-            {
-              href: '/play',
-              title: 'Play',
-              desc: 'Small interactive experiments. For fun.',
-            },
+            { href: '/experiences', title: 'Experiences', desc: 'Roles, teams, and tech I’ve worked on.' },
+            { href: '/projects', title: 'Projects', desc: 'Independent builds and experiments.' },
+            { href: '/thoughts', title: 'Writing', desc: 'Notes on markets, systems, and poker.' },
           ].map(({ href, title, desc }) => (
             <Link
               key={href}
               href={href}
               className="
-          group explore-link rounded-xl
-          border border-white/10
-          px-4 py-2.5
-          transition-all duration-200
-          hover:border-[var(--explore-hover-border)]
-          hover:bg-[var(--explore-hover-surface)]
-        "
+                group explore-link rounded-xl
+                border border-white/10
+                px-4 py-2.5
+                transition-all duration-200
+                hover:border-[var(--explore-hover-border)]
+                hover:bg-[var(--explore-hover-surface)]
+              "
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -101,19 +69,20 @@ export default function Home() {
                   </p>
                 </div>
 
-                <span className="explore-arrow text-sm text-foreground/70">
-                  →
-                </span>
+                <span className="explore-arrow text-sm text-foreground/70">→</span>
               </div>
             </Link>
           ))}
+
+          <PlayExploreCard unlocked={blackjackUnlocked} />
         </div>
       </section>
 
-
+      {/* back to normal */}
       <SocialLinks />
 
-      <Footer />
+      {/* easter egg lives here */}
+      <Footer onUnlockBlackjack={() => setBlackjackUnlocked(true)} />
     </>
   )
 }

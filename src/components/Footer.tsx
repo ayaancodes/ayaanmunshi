@@ -1,15 +1,46 @@
 'use client'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
 
-export default function Footer() {
+import Image from 'next/image'
+import React, { useEffect, useState } from 'react'
+
+export default function Footer({
+  onUnlockBlackjack,
+}: {
+  onUnlockBlackjack?: () => void
+}) {
+  const [popped, setPopped] = React.useState(false)
+
+  const handleAceClick = () => {
+    if (popped) return
+    setPopped(true)
+    onUnlockBlackjack?.()
+    setTimeout(() => setPopped(false), 700)
+  }
+
   return (
     <footer className="pt-8">
       <hr className="h-px border-0 bg-foreground/20" />
+
       <div className="mx-1 flex items-center justify-between pt-4 md:mx-3">
-        <span className="text-xs text-foreground">
-          © {new Date().getFullYear()} Salim
-        </span>
+        {/* LEFT: name + ace */}
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-foreground">
+            © {new Date().getFullYear()} Ayaan
+          </span>
+
+          {/* tiny easter egg */}
+          <button
+            type="button"
+            onClick={handleAceClick}
+            className={`ace-btn ${popped ? 'ace-pop ace-grand' : ''}`}
+            title="?"
+          >
+            <span className="ace-card">A♠</span>
+            <span className={`ace-ripple ${popped ? 'ace-ripple-on' : ''}`} />
+          </button>
+        </div>
+
+        {/* RIGHT: time */}
         <NowTime />
       </div>
     </footer>
@@ -37,9 +68,8 @@ function NowTime() {
     }
 
     updateTime()
-    const interval = setInterval(updateTime, 60000) // Update every minute
+    const interval = setInterval(updateTime, 60000)
 
-    // Blink the colon
     const blinkInterval = setInterval(() => {
       setBlinking(prev => !prev)
     }, 500)
@@ -51,19 +81,20 @@ function NowTime() {
   }, [])
 
   return (
-    <div className="flex items-center gap-2" style={{ opacity: 1 }}>
-      <div style={{ opacity: 1, transform: 'none' }}>
-        <Image
-          alt="Evening Icon"
-          width={12}
-          height={13}
-          src="/images/evening.svg"
-          className="w-3 h-3.5 invert"
-        />
-      </div>
-      <span className="text-xs text-foreground transition duration-150" style={{ opacity: 1 }}>
-        Kigali, {hours}
-        <span className="animate-pulse" style={{ opacity: blinking ? 0 : 1 }}>:</span>
+    <div className="flex items-center gap-2">
+      <Image
+        alt="Evening Icon"
+        width={12}
+        height={13}
+        src="/images/evening.svg"
+        className="w-3 h-3.5 invert"
+      />
+
+      <span className="text-xs text-foreground transition duration-150">
+        Toronto, {hours}
+        <span className="animate-pulse" style={{ opacity: blinking ? 0 : 1 }}>
+          :
+        </span>
         {minutes} {period}
       </span>
     </div>
