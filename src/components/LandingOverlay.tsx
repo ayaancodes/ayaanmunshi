@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+
 
 const NAME = "ayaan munshi";
 
@@ -12,22 +13,25 @@ export default function LandingOverlay() {
     offset: ["start start", "end start"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.9], [1, 0]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const reduceMotion = useReducedMotion();
+
+
+  const opacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 0.25], [0, -12]);
 
   return (
     <section ref={ref} className="relative h-full">
       <motion.div
-        style={{ opacity, y }}
+        style={reduceMotion ? undefined : { opacity, y }}
         className="sticky top-0 h-screen overflow-hidden bg-[#0A0A0A] text-white"
       >
         {/* drifting background names */}
         <div aria-hidden className="pointer-events-none absolute inset-0 opacity-10">
-          {[0, 1, 2, 3, 4, 5].map((i) => (
+          {[0, 1, 2, 3].map((i) => (
             <div
               key={i}
               className={`marquee ${i % 2 ? "marquee-reverse" : ""}`}
-              style={{ top: `${10 + i * 14}%` }}
+              style={{ top: `${14 + i * 18}%` }}
             >
               <span className="marquee-text text-white/50">
                 {NAME} · {NAME} · {NAME} · {NAME} · {NAME} ·

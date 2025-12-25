@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import LandingOverlay from "@/components/LandingOverlay";
 
 export const metadata: Metadata = {
   title: "Ayaan Munshi",
@@ -14,17 +13,14 @@ export const metadata: Metadata = {
       "Software engineering student interested in building systems that connect technology, markets, and people",
     url: "https://salim.engineer",
     siteName: "Ayaan Munshi",
-    images: [
-      { url: "/og.png", width: 1200, height: 630, alt: "Salim Rutaganda" },
-    ],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Salim Rutaganda" }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Salim Rutaganda",
-    description:
-      "A minimal personal portfolio website made with Next.js and Tailwind CSS",
+    description: "A minimal personal portfolio website made with Next.js and Tailwind CSS",
     images: ["/og.png"],
     creator: "@salimnunez01",
   },
@@ -43,24 +39,9 @@ export default function RootLayout({
         ></script>
       </head>
 
-      {/* full-page smooth scroll container */}
       <body className="text-body bg-[#0A0A0A] selection:bg-primary selection:text-hoverColor">
         <Analytics />
-        <main className="font-sans h-screen snap-y snap-mandatory overflow-y-scroll scroll-smooth">
-          {/* Section 1 — Landing (full viewport hero) */}
-          <section className="h-screen snap-start snap-always">
-          <LandingOverlay />
-          </section>
-
-          {/* Section 2 — Main portfolio content */}
-          <section
-            id="content"
-            className="min-h-screen snap-start snap-always mx-auto max-w-[400px] px-4 pt-10 md:max-w-[700px]"
-            >
-            {children}
-          </section>
-
-        </main>
+        {children}
       </body>
     </html>
   );
