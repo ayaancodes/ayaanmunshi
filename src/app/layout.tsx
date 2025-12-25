@@ -55,7 +55,7 @@ export default function RootLayout({
           {/* Section 2 — Main portfolio content */}
           <section
             id="content"
-            className="min-h-screen snap-start snap-always mx-auto max-w-[400px] px-4 pt-10 md:max-w-[600px]"
+            className="min-h-screen snap-start snap-always mx-auto max-w-[400px] px-4 pt-10 md:max-w-[700px]"
             >
             {children}
           </section>

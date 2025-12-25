@@ -14,27 +14,28 @@ export default function Home() {
     <>
       <Header />
 
-      <h1 className="text-[2.5rem] font-serif tracking-tight text-primary">
+      <h1 className="text-[3.0rem] font-serif tracking-tight text-primary">
         Ayaan Munshi
       </h1>
 
       <div className="flex items-center gap-1.5 font-medium tracking-tight">
-        <h2 className="text-base text-foreground">engineer</h2>
+        <h2 className="text-lg text-foreground">engineer</h2>
         <span className="text-foreground/50">•</span>
-        <h2 className="text-base text-foreground">student</h2>
+        <h2 className="text-lg text-foreground">student</h2>
         <span className="text-foreground/50">•</span>
-        <h2 className="text-base text-foreground">pathfinder</h2>
+        <h2 className="text-lg text-foreground">mustang</h2>
       </div>
 
-      <p className="pt-4 text-sm text-foreground leading-relaxed">
-        Hi, I’m Ayaan, a software engineer fascinated by how
+      <p className="pt-4 text-base text-foreground leading-relaxed">
+        Hi, I’m Ayaan, an engineering student fascinated by how
         <span className="hover-accent"> markets </span> shape systems, how
         <span className="hover-accent"> politics </span> drives incentives, and how
         <span className="hover-accent"> technology </span> amplifies them both.
         <br /><br />
         I’ve built and shipped software across many different industries, on track
         to total <span className="hover-accent">2 years</span> of internship
-        experience before my senior year.
+        experience before my senior year. 
+        
       </p>
 
       {/* EXPLORE */}
@@ -59,17 +60,17 @@ export default function Home() {
                 hover:bg-[var(--explore-hover-surface)]
               "
             >
-              <div className="flex items-start justify-between gap-3">
+              <div className="flex items-start justify-between gap-3 h-full">
                 <div>
-                  <p className="text-sm font-medium tracking-tight text-foreground group-hover:text-primary">
+                  <p className="text-base font-medium tracking-tight text-foreground group-hover:text-primary">
                     {title}
                   </p>
-                  <p className="pt-0.5 text-xs text-foreground/75 leading-snug">
+                  <p className="pt-0.5 text-sm text-foreground/75 leading-snug">
                     {desc}
                   </p>
                 </div>
 
-                <span className="explore-arrow text-sm text-foreground/70">→</span>
+                <span className="explore-arrow text-base text-foreground/70">→</span>
               </div>
             </Link>
           ))}
@@ -81,7 +82,7 @@ export default function Home() {
       {/* back to normal */}
       <SocialLinks />
 
-      {/* easter egg lives here */}
+      {/* easter egg lives here (good job if you checked the codebase lol)*/}
       <Footer onUnlockBlackjack={() => setBlackjackUnlocked(true)} />
     </>
   )
