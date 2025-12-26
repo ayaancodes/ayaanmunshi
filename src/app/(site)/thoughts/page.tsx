@@ -23,11 +23,17 @@ export default function Thoughts() {
   }, [])
 
   const filteredThoughts = React.useMemo(() => {
-    if (activeTag === 'all') return THOUGHTS
-    return THOUGHTS.filter(thought =>
-      thought.tags.map(t => t.toLowerCase()).includes(activeTag)
-    )
+    const base =
+      activeTag === 'all'
+        ? THOUGHTS
+        : THOUGHTS.filter(thought =>
+            thought.tags.map(t => t.toLowerCase()).includes(activeTag)
+          )
+  
+    // Higher id shows first
+    return [...base].sort((a, b) => b.id - a.id)
   }, [activeTag])
+  
 
   const setTag = (tag: string) => {
     if (tag === 'all') {
@@ -45,7 +51,7 @@ export default function Thoughts() {
         Thoughts
       </h1>
       <h2 className="text-base font-medium tracking-tight text-foreground">
-        some thoughts on design, code, and life.
+        some thoughts on markets, tech, and life.
       </h2>
 
       {/* TAG FILTER */}
