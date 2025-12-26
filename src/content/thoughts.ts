@@ -22,12 +22,12 @@ export type Thought = {
     },
     {
       id: 2,
-      title: 'Interactive 3D Button',
-      description: 'A hover button that reacts with a realistic 3D effect.',
-      date: 'Mar 31, 2024',
-      slug: '3d-button',
+      title: 'Elementary Options Strategy',
+      description: 'developing intuition for risk, reward, and payoff diagrams.',
+      date: 'August 27, 2025',
+      slug: 'options-notes-02',
       icon: 'https://ext.same-assets.com/937924524/275937493.svg',
-      tags: ['design', 'frontend'],
+      tags: ['markets'],
     },
   ]
   

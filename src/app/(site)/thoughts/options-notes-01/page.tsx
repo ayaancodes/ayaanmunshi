@@ -9,7 +9,7 @@ export default function OptionsNotesChapter1() {
       <Header showHomeLink={true} />
 
       <h1 className="text-[2.5rem] font-serif tracking-tight text-primary">
-        Options Language 
+        Options Notes - Terminology 
       </h1>
       <p className="text-sm text-foreground/80">
         August 26, 2025 · Options / Markets
