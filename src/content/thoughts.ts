@@ -13,12 +13,12 @@ export type Thought = {
   export const THOUGHTS: Thought[] = [
     {
       id: 1,
-      title: 'Designing Grain Texture',
-      description: 'minimal grain texture card .',
-      date: 'Apr 02, 2025',
-      slug: 'grain-texture',
+      title: 'Options Terminology',
+      description: 'order tickets, moneyness, and core option language.',
+      date: 'Sept 02, 2025',
+      slug: 'options-notes-01',
       icon: 'https://ext.same-assets.com/937924524/3131399881.svg',
-      tags: ['design', 'tools'],
+      tags: ['markets'],
     },
     {
       id: 2,
