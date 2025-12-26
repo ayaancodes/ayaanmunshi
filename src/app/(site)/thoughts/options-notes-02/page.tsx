@@ -2,12 +2,25 @@
 
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import Link from 'next/link'
+
 
 export default function OptionsNotesChapter2() {
   return (
-    <>
-      <Header showHomeLink={true} />
 
+    <>
+      <Link
+        href="/thoughts"
+        className="
+    inline-flex items-center gap-2
+    text-sm text-foreground/70
+    hover:text-primary
+    transition-colors
+    mb-4
+  "
+      >
+        ← Back to Thoughts
+      </Link>
       <h1 className="text-[2.5rem] font-serif tracking-tight text-primary">
         Elementary Strategies
       </h1>
