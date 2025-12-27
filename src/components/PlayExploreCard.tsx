@@ -85,7 +85,8 @@ export default function PlayExploreCard({ unlocked }: { unlocked: boolean }) {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault()
     if (phase !== 'done') return
-    router.push('/play') // later when you build it
+    router.push('/play', { scroll: false })
+
   }
 
   return (

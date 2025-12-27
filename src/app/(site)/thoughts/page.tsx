@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
@@ -8,7 +8,7 @@ import Image from 'next/image'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { THOUGHTS } from '@/content/thoughts'
 
-export default function Thoughts() {
+function ThoughtsInner() {
   const searchParams = useSearchParams()
   const router = useRouter()
 
@@ -23,24 +23,16 @@ export default function Thoughts() {
   }, [])
 
   const filteredThoughts = React.useMemo(() => {
-    const base =
-      activeTag === 'all'
-        ? THOUGHTS
-        : THOUGHTS.filter(thought =>
-            thought.tags.map(t => t.toLowerCase()).includes(activeTag)
-          )
-  
-    // Higher id shows first
-    return [...base].sort((a, b) => b.id - a.id)
+    const sorted = [...THOUGHTS].sort((a, b) => b.id - a.id) // newest (highest id) first
+    if (activeTag === 'all') return sorted
+    return sorted.filter(thought =>
+      thought.tags.map(t => t.toLowerCase()).includes(activeTag)
+    )
   }, [activeTag])
-  
 
   const setTag = (tag: string) => {
-    if (tag === 'all') {
-      router.push('/thoughts')
-    } else {
-      router.push(`/thoughts?tag=${encodeURIComponent(tag)}`)
-    }
+    if (tag === 'all') router.push('/thoughts')
+    else router.push(`/thoughts?tag=${encodeURIComponent(tag)}`)
   }
 
   return (
@@ -51,7 +43,7 @@ export default function Thoughts() {
         Thoughts
       </h1>
       <h2 className="text-base font-medium tracking-tight text-foreground">
-        some thoughts on markets, tech, and life.
+        some thoughts on design, code, and life.
       </h2>
 
       {/* TAG FILTER */}
@@ -116,7 +108,6 @@ export default function Thoughts() {
                   {thought.description}
                 </p>
 
-                {/* TAGS PER POST */}
                 <div className="pt-2 flex gap-2 flex-wrap">
                   {thought.tags.map(tag => (
                     <span
@@ -135,5 +126,13 @@ export default function Thoughts() {
 
       <Footer />
     </>
+  )
+}
+
+export default function ThoughtsPage() {
+  return (
+    <Suspense fallback={null}>
+      <ThoughtsInner />
+    </Suspense>
   )
 }
