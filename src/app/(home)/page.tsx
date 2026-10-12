@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SocialLinks from '@/components/SocialLinks'
+import Places from '@/components/Places'
 import { THOUGHTS } from '@/content/thoughts'
 import { EXPERIENCES } from '@/content/experiences'
 
@@ -150,6 +151,8 @@ export default function Home() {
           />
         ))}
       </SectionLinkList>
+
+      <Places />
 
       <SectionLinkList title="Elsewhere">
         <Row
