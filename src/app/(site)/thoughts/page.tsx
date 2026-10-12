@@ -4,11 +4,10 @@ import React, { Suspense } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { THOUGHTS } from '@/content/thoughts'
 
-function ThoughtsInner() {
+function WritingInner() {
   const searchParams = useSearchParams()
   const router = useRouter()
 
@@ -16,123 +15,77 @@ function ThoughtsInner() {
 
   const allTags = React.useMemo(() => {
     const set = new Set<string>()
-    THOUGHTS.forEach(thought =>
-      thought.tags.forEach(tag => set.add(tag.toLowerCase()))
-    )
+    THOUGHTS.forEach(t => t.tags.forEach(tag => set.add(tag.toLowerCase())))
     return Array.from(set).sort()
   }, [])
 
-  const filteredThoughts = React.useMemo(() => {
-    const sorted = [...THOUGHTS].sort((a, b) => b.id - a.id) // newest (highest id) first
+  const posts = React.useMemo(() => {
+    const sorted = [...THOUGHTS].sort((a, b) => b.id - a.id)
     if (activeTag === 'all') return sorted
-    return sorted.filter(thought =>
-      thought.tags.map(t => t.toLowerCase()).includes(activeTag)
+    return sorted.filter(t =>
+      t.tags.map(tag => tag.toLowerCase()).includes(activeTag),
     )
   }, [activeTag])
 
-  const setTag = (tag: string) => {
-    if (tag === 'all') router.push('/thoughts')
-    else router.push(`/thoughts?tag=${encodeURIComponent(tag)}`)
-  }
+  const setTag = (tag: string) =>
+    router.push(tag === 'all' ? '/thoughts' : `/thoughts?tag=${encodeURIComponent(tag)}`)
 
   return (
     <>
-      <Header showHomeLink={true} />
+      <Header showHomeLink />
 
-      <h1 className="font-serif text-[2.5rem] tracking-tight text-primary">
-        Thoughts
-      </h1>
-      <h2 className="text-base font-medium tracking-tight text-foreground">
-        some thoughts on design, code, and life.
-      </h2>
+      <h1 className="text-title">Writing</h1>
+      <p className="pt-1 text-[var(--step-small)] text-muted">
+        notes on markets, systems, and the occasional hand of poker.
+      </p>
 
-      {/* TAG FILTER */}
-      <div className="pt-4 flex flex-wrap gap-2">
-        <button
-          type="button"
-          onClick={() => setTag('all')}
-          className={`rounded-full border px-3 py-1 text-xs transition
-            ${
-              activeTag === 'all'
-                ? 'border-white/25 bg-white/10 text-primary'
-                : 'border-white/10 text-foreground hover:bg-white/5'
-            }`}
-        >
-          All
-        </button>
-
-        {allTags.map(tag => (
+      <div className="flex flex-wrap gap-2 pt-[var(--space-group)]">
+        {['all', ...allTags].map(tag => (
           <button
             key={tag}
             type="button"
             onClick={() => setTag(tag)}
-            className={`rounded-full border px-3 py-1 text-xs transition
-              ${
-                activeTag === tag
-                  ? 'border-white/25 bg-white/10 text-primary'
-                  : 'border-white/10 text-foreground hover:bg-white/5'
-              }`}
+            className={`rounded-full border px-3 py-1 text-[var(--step-meta)] transition-colors ${
+              activeTag === tag
+                ? 'border-accent text-accent'
+                : 'hairline text-muted hover:text-accent'
+            }`}
           >
             {tag}
           </button>
         ))}
       </div>
 
-      {/* THOUGHT LIST */}
-      <section className="pt-4">
-        <div className="flex flex-col">
-          {filteredThoughts.map(thought => (
+      <ul className="pt-[var(--space-group)]">
+        {posts.map(post => (
+          <li key={post.id} className="border-b hairline">
             <Link
-              key={thought.id}
-              href={`/thoughts/${thought.slug}`}
-              className="group -mx-3 mt-2 flex w-full gap-2.5 overflow-hidden rounded-xl px-3 py-3 transition-all duration-300 ease-in-out md:items-start md:hover:scale-[1.02] md:hover:bg-hoverColor"
+              href={`/thoughts/${post.slug}`}
+              className="group block py-4"
             >
-              <div className="flex w-full flex-col items-start">
-                <div className="flex w-full items-center justify-between">
-                  <h2 className="flex items-center gap-2 font-medium tracking-tight text-primary group-hover:text-accent">
-                    <span>{thought.title}</span>
-                    <Image
-                      src={thought.icon}
-                      alt=""
-                      width={16}
-                      height={16}
-                      className="invert"
-                    />
-                  </h2>
-                  <p className="text-sm font-normal text-foreground">
-                    {thought.date}
-                  </p>
-                </div>
-
-                <p className="pt-0.5 text-sm font-normal text-foreground max-w-[90%] truncate">
-                  {thought.description}
-                </p>
-
-                <div className="pt-2 flex gap-2 flex-wrap">
-                  {thought.tags.map(tag => (
-                    <span
-                      key={tag}
-                      className="text-[11px] rounded-full border border-white/10 px-2 py-0.5 text-foreground/70"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+              <div className="flex items-baseline justify-between gap-4">
+                <span className="font-medium transition-colors group-hover:text-accent">
+                  {post.title}
+                </span>
+                <span className="shrink-0 text-meta">{post.date}</span>
               </div>
+              <p className="max-w-content pt-1 text-[var(--step-small)] text-muted">
+                {post.description}
+              </p>
             </Link>
-          ))}
-        </div>
-      </section>
+          </li>
+        ))}
+      </ul>
 
       <Footer />
     </>
   )
 }
 
-export default function ThoughtsPage() {
+export default function WritingPage() {
   return (
     <Suspense fallback={null}>
-      <ThoughtsInner />
+      <WritingInner />
     </Suspense>
   )
 }
