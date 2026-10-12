@@ -1,42 +1,33 @@
 import Link from 'next/link'
 import { FiMail } from 'react-icons/fi'
-import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6'
+
+const SOCIALS = [
+  { href: 'mailto:ayaanmunshi456@gmail.com', label: 'email', Icon: FiMail },
+  { href: 'https://github.com/ayaancodes', label: 'github', Icon: FaGithub },
+  {
+    href: 'https://www.linkedin.com/in/ayaan-munshi/',
+    label: 'linkedin',
+    Icon: FaLinkedin,
+  },
+  { href: 'https://x.com/ayaanmunshi', label: 'x', Icon: FaXTwitter },
+]
 
 export default function SocialLinks() {
   return (
-    <div className="w-fit grid grid-cols-3 gap-4 pt-4 tracking-tight md:flex md:flex-row md:items-start">
-      {/* Email */}
-      <Link
-        href="mailto:ayaanmunshi456@gmail..com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group flex items-center underline-offset-4 transition duration-150 ease-in-out md:hover:text-accent md:hover:underline"
-      >
-        <FiMail className="mr-1 h-4 w-4" />
-        <span className="text-sm text-primary">email</span>
-      </Link>
-
-      {/* GitHub */}
-      <Link
-        href="https://github.com/ayaancodes"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group flex items-center underline-offset-4 transition duration-150 ease-in-out md:hover:text-accent md:hover:underline"
-      >
-        <FaGithub className="mr-1 h-4 w-4" />
-        <span className="text-sm text-primary">github</span>
-      </Link>
-
-      {/* LinkedIn */}
-      <Link
-        href="https://www.linkedin.com/in/ayaan-munshi/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group flex items-center underline-offset-4 transition duration-150 ease-in-out md:hover:text-accent md:hover:underline"
-      >
-        <FaLinkedin className="mr-1 h-4 w-4" />
-        <span className="text-sm text-primary">linkedin</span>
-      </Link>
+    <div className="flex flex-wrap items-center gap-5">
+      {SOCIALS.map(({ href, label, Icon }) => (
+        <Link
+          key={label}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 text-[var(--step-meta)] text-muted transition-colors hover:text-accent"
+        >
+          <Icon className="h-3.5 w-3.5" />
+          {label}
+        </Link>
+      ))}
     </div>
   )
 }

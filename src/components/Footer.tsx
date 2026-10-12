@@ -18,13 +18,11 @@ export default function Footer({
   }
 
   return (
-    <footer className="pt-8">
-      <hr className="h-px border-0 bg-foreground/20" />
-
-      <div className="mx-1 flex items-center justify-between pt-4 md:mx-3">
+    <footer className="mt-[var(--space-section)] border-t hairline pb-16 pt-4">
+      <div className="flex items-center justify-between">
         {/* LEFT: name + ace */}
         <div className="flex items-center gap-2">
-          <span className="text-xs text-foreground">
+          <span className="text-meta">
             © {new Date().getFullYear()} Ayaan
           </span>
 
@@ -83,14 +81,14 @@ function NowTime() {
   return (
     <div className="flex items-center gap-2">
       <Image
-        alt="Evening Icon"
+        alt=""
         width={12}
         height={13}
         src="/images/evening.svg"
-        className="w-3 h-3.5 invert"
+        className="h-3.5 w-3 opacity-50 dark:invert"
       />
 
-      <span className="text-xs text-foreground transition duration-150">
+      <span className="text-meta">
         Toronto, {hours}
         <span className="animate-pulse" style={{ opacity: blinking ? 0 : 1 }}>
           :

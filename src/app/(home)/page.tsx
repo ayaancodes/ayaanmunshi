@@ -1,88 +1,178 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SocialLinks from '@/components/SocialLinks'
-import Link from 'next/link'
-import PlayExploreCard from '@/components/PlayExploreCard'
+import { THOUGHTS } from '@/content/thoughts'
+import { EXPERIENCES } from '@/content/experiences'
+
+function SectionLinkList({
+  title,
+  href,
+  moreLabel,
+  children,
+}: {
+  title: string
+  href?: string
+  moreLabel?: string
+  children: React.ReactNode
+}) {
+  return (
+    <section className="pt-[var(--space-section)]">
+      <div className="flex items-baseline justify-between">
+        <h2 className="text-[var(--step-small)] font-medium">{title}</h2>
+        {href && (
+          <Link
+            href={href}
+            className="text-meta transition-colors hover:text-accent"
+          >
+            {moreLabel} →
+          </Link>
+        )}
+      </div>
+      <ul className="pt-[var(--space-group)]">{children}</ul>
+    </section>
+  )
+}
+
+function Row({
+  href,
+  primary,
+  secondary,
+  meta,
+  external,
+}: {
+  href: string
+  primary: string
+  secondary?: string
+  meta: string
+  external?: boolean
+}) {
+  return (
+    <li>
+      <Link
+        href={href}
+        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        className="group flex items-baseline justify-between gap-6 py-2"
+      >
+        <span className="min-w-0">
+          <span className="block truncate transition-colors group-hover:text-accent">
+            {primary}
+          </span>
+          {secondary && (
+            <span className="block text-[var(--step-meta)] text-muted">
+              {secondary}
+            </span>
+          )}
+        </span>
+        <span className="shrink-0 text-meta">{meta}</span>
+      </Link>
+    </li>
+  )
+}
+
+// Content dates are hand-written strings, some non-standard ("Sept 02, 2025").
+const shortDate = (date: string) => {
+  const parts = date.match(/^([A-Za-z]{3})[a-z]*\s+\d+,?\s*(\d{4})$/)
+  return parts ? `${parts[1]} ${parts[2]}` : date
+}
 
 export default function Home() {
   const [blackjackUnlocked, setBlackjackUnlocked] = React.useState(false)
+
+  const recentWriting = THOUGHTS.slice().reverse().slice(0, 3)
+  const recentWork = EXPERIENCES.slice(0, 4)
 
   return (
     <>
       <Header />
 
-      <h1 className="text-[3.0rem] font-serif tracking-tight text-primary">
-        Ayaan Munshi
-      </h1>
+      <div className="flex items-start justify-between gap-6">
+        <div className="min-w-0">
+          <h1 className="text-display">Ayaan Munshi</h1>
+          <p className="pt-1 text-[var(--step-small)] text-muted">
+            engineer · student · mustang
+          </p>
+        </div>
 
-      <div className="flex items-center gap-1.5 font-medium tracking-tight">
-        <h2 className="text-lg text-foreground">engineer</h2>
-        <span className="text-foreground/50">•</span>
-        <h2 className="text-lg text-foreground">student</h2>
-        <span className="text-foreground/50">•</span>
-        <h2 className="text-lg text-foreground">mustang</h2>
+        <Image
+          src="/photos/headshot.jpg"
+          alt="Ayaan Munshi"
+          width={160}
+          height={160}
+          priority
+          className="h-20 w-20 shrink-0 rounded-full object-cover sm:h-24 sm:w-24"
+        />
       </div>
 
-      <p className="pt-4 text-base text-foreground leading-relaxed">
-        Hi, I’m Ayaan, an engineering student fascinated by how
-        <span className="hover-accent"> markets </span> shape systems, how
-        <span className="hover-accent"> politics </span> drives incentives, and how
-        <span className="hover-accent"> technology </span> amplifies them both.
-        <br /><br />
-        I’ve built and shipped software across many different industries, on track
-        to total <span className="hover-accent">2 years</span> of internship
-        experience before my senior year. 
-        
-      </p>
+      <div className="max-w-content pt-[var(--space-group)]">
+        <p>
+          Hi, I&rsquo;m Ayaan, an engineering student fascinated by how{' '}
+          <span className="hover-accent">markets</span> shape systems, how{' '}
+          <span className="hover-accent">politics</span> drives incentives, and
+          how <span className="hover-accent">technology</span> amplifies them
+          both.
+        </p>
+        <p className="pt-4">
+          I&rsquo;ve built and shipped software across several industries, on
+          track to total two years of internship experience before my senior
+          year. Right now I&rsquo;m most interested in starting something of my
+          own.
+        </p>
+      </div>
 
-      {/* EXPLORE */}
-      <section className="pt-10">
-        <h2 className="font-medium tracking-tight text-foreground">Explore</h2>
+      <SectionLinkList title="Writing" href="/thoughts" moreLabel="all writing">
+        {recentWriting.map(t => (
+          <Row
+            key={t.slug}
+            href={`/thoughts/${t.slug}`}
+            primary={t.title}
+            meta={shortDate(t.date)}
+          />
+        ))}
+      </SectionLinkList>
 
-        <div className="pt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-          {[
-            { href: '/experiences', title: 'Experiences', desc: 'Roles, teams, and tech I’ve worked on.' },
-            { href: '/projects', title: 'Projects', desc: 'Independent builds and experiments.' },
-            { href: '/thoughts', title: 'Writing', desc: 'Notes on markets, systems, and poker.' },
-          ].map(({ href, title, desc }) => (
-            <Link
-              key={href}
-              href={href}
-              className="
-                group explore-link rounded-xl
-                border border-white/10
-                px-4 py-2.5
-                transition-all duration-200
-                hover:border-[var(--explore-hover-border)]
-                hover:bg-[var(--explore-hover-surface)]
-              "
-            >
-              <div className="flex items-start justify-between gap-3 h-full">
-                <div>
-                  <p className="text-base font-medium tracking-tight text-foreground group-hover:text-primary">
-                    {title}
-                  </p>
-                  <p className="pt-0.5 text-sm text-foreground/75 leading-snug">
-                    {desc}
-                  </p>
-                </div>
+      <SectionLinkList
+        title="Work"
+        href="/experiences"
+        moreLabel="all experiences"
+      >
+        {recentWork.map(e => (
+          <Row
+            key={e.slug}
+            href="/experiences"
+            primary={e.company}
+            secondary={e.role}
+            meta={e.start}
+          />
+        ))}
+      </SectionLinkList>
 
-                <span className="explore-arrow text-base text-foreground/70">→</span>
-              </div>
-            </Link>
-          ))}
+      <SectionLinkList title="Elsewhere">
+        <Row
+          href="/reading"
+          primary="Reading"
+          secondary="Things worth keeping."
+          meta=""
+        />
+        {blackjackUnlocked && (
+          <Row
+            href="/play"
+            primary="Blackjack"
+            secondary="You found the ace."
+            meta=""
+          />
+        )}
+      </SectionLinkList>
 
-          <PlayExploreCard unlocked={blackjackUnlocked} />
-        </div>
-      </section>
+      <div className="pt-[var(--space-section)]">
+        <SocialLinks />
+      </div>
 
-      {/* back to normal */}
-      <SocialLinks />
-
-      {/* easter egg lives here (good job if you checked the codebase lol)*/}
+      {/* easter egg lives here (good job if you checked the codebase lol) */}
       <Footer onUnlockBlackjack={() => setBlackjackUnlocked(true)} />
     </>
   )

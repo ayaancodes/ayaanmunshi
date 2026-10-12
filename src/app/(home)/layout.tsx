@@ -6,7 +6,7 @@ export default function HomeLayout({
   modal: React.ReactNode
 }) {
   return (
-    <main className="font-sans mx-auto max-w-[400px] px-4 pt-10 md:max-w-[700px]">
+    <main className="mx-auto max-w-content px-5 pt-12">
       {modal}
       {children}
     </main>
