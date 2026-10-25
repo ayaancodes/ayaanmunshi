@@ -37,10 +37,10 @@ export default function Header({ showHomeLink = false }: HeaderProps) {
           <span className="text-primary">experiences</span>
         </Link>
         <Link
-          href="/reading"
+          href="/places"
           className="hover:text-accent underline-offset-4 transition duration-150 ease-in-out hover:underline"
         >
-          <span className="text-primary">reading</span>
+          <span className="text-primary">places</span>
         </Link>
       </div>
     </nav>

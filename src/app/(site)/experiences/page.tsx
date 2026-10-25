@@ -8,10 +8,10 @@ const projects = [
         id: 1,
         title: 'Rippling',
         role: 'Software Engineer Intern - Time Tracking Team',
-        date: 'Incoming May 2026 - August 2026',
+        date: 'May 2026 - August 2026',
         location: 'New York, USA',
         description:
-            'Incoming Summer 2026',
+            'Software engineering on the Time Tracking team.',
         tech: ['Python', 'Django', 'AWS', 'React'],
         link: 'https://www.rippling.com/about',
         image: '/experience/RipplingSkyline.avif'
@@ -20,10 +20,10 @@ const projects = [
         id: 2,
         title: 'BMO Capital Markets',
         role: 'Quantitative Trading Intern - Global Markets Team',
-        date: 'Incoming January 2026 - April 2026',
+        date: 'January 2026 - April 2026',
         location: 'Toronto, Canada',
         description:
-            'Incoming Winter 2026',
+            'Quantitative trading on the Global Markets team.',
         tech: ['Python', 'KDB/Q', 'SQL', 'Excel'],
         link: 'https://capitalmarkets.bmo.com/en/about-us/',
         image: '/experience/BMOLogo.webp'

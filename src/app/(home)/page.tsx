@@ -32,19 +32,33 @@ export default function Home() {
         <span className="hover-accent"> politics </span> drives incentives, and how
         <span className="hover-accent"> technology </span> amplifies them both.
         <br /><br />
-        I’ve built and shipped software across many different industries, on track
-        to total <span className="hover-accent">2 years</span> of internship
+        I’ve built and shipped software across many different industries,
+        totalling <span className="hover-accent">2 years</span> of internship
         experience before my senior year.
 
       </p>
 
-      <p className="pt-3 text-sm leading-relaxed text-foreground/70">
-        Incoming at <span className="text-primary">Rippling</span> and{' '}
-        <span className="text-primary">BMO Capital Markets</span>. Previously{' '}
-        <span className="text-primary">RBC Capital Markets</span>,{' '}
-        <span className="text-primary">Beats by Dre</span>, and{' '}
-        <span className="text-primary">Canam</span>.
-      </p>
+      {/* FOCUS */}
+      <section className="pt-8">
+        <h2 className="font-medium tracking-tight text-foreground">Focus</h2>
+
+        <div className="pt-3 flex flex-wrap gap-2">
+          {[
+            'Software Engineering',
+            'Applied AI Engineering',
+            'Big Data',
+            'Quantitative Analysis',
+            'Financial Markets',
+          ].map(area => (
+            <span
+              key={area}
+              className="rounded-full border border-white/10 px-3 py-1 text-xs text-foreground/80"
+            >
+              {area}
+            </span>
+          ))}
+        </div>
+      </section>
 
       {/* EXPLORE */}
       <section className="pt-10">
@@ -53,7 +67,6 @@ export default function Home() {
         <div className="pt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
           {[
             { href: '/experiences', title: 'Experiences', desc: 'Roles, teams, and tech I’ve worked on.' },
-            { href: '/reading', title: 'Reading', desc: 'Things worth keeping, and why.' },
             { href: '/thoughts', title: 'Writing', desc: 'Notes on markets, systems, and poker.' },
             { href: '/places', title: 'Places', desc: 'The cities that shaped me.' },
           ].map(({ href, title, desc }) => (

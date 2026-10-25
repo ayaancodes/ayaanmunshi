@@ -4,7 +4,6 @@ import React, { Suspense } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { THOUGHTS } from '@/content/thoughts'
 
@@ -89,15 +88,8 @@ function ThoughtsInner() {
             >
               <div className="flex w-full flex-col items-start">
                 <div className="flex w-full items-center justify-between">
-                  <h2 className="flex items-center gap-2 font-medium tracking-tight text-primary group-hover:text-accent">
-                    <span>{thought.title}</span>
-                    <Image
-                      src={thought.icon}
-                      alt=""
-                      width={16}
-                      height={16}
-                      className="invert"
-                    />
+                  <h2 className="font-medium tracking-tight text-primary group-hover:text-accent">
+                    {thought.title}
                   </h2>
                   <p className="text-sm font-normal text-foreground">
                     {thought.date}
