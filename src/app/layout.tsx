@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ayaanmunshi.com"),
   title: "Ayaan Munshi",
   description: DESCRIPTION,
-  icons: { icon: "/favicon.png" },
+  icons: { icon: "/favicon.svg" },
   openGraph: {
     title: "Ayaan Munshi",
     description: DESCRIPTION,

@@ -52,7 +52,7 @@ export default function Home() {
           ].map(area => (
             <span
               key={area}
-              className="rounded-full border border-white/10 px-3 py-1 text-xs text-foreground/80"
+              className="focus-pill rounded-full border border-white/10 px-3 py-1 text-xs text-foreground/80"
             >
               {area}
             </span>

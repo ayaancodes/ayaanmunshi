@@ -149,6 +149,16 @@ body {
   cursor: pointer;
 }
 
+/* Matches .hover-accent:hover so Focus reads the same as the bio links. */
+.focus-pill {
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.focus-pill:hover {
+  color: rgba(170, 150, 255, 0.85);
+  border-color: rgba(170, 150, 255, 0.35);
+}
+
 .explore-arrow {
   opacity: 0;
   transform: translateX(-4px);

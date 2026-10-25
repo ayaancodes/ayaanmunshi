@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
 export default function Footer({
@@ -82,16 +81,20 @@ function NowTime() {
 
   return (
     <div className="flex items-center gap-2">
-      <Image
-        alt="Evening Icon"
-        width={12}
-        height={13}
-        src="/images/evening.svg"
-        className="w-3 h-3.5 invert"
-      />
+      <svg viewBox="0 0 100 100" className="h-3.5 w-3.5" aria-hidden="true">
+        <path
+          d="M27 77 L50 23 L73 77 M36 62 L64 62"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="9"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
 
       <span className="text-xs text-foreground transition duration-150">
-        Toronto, {hours}
+        {/* Toronto and New York share Eastern time, so one clock covers both. */}
+        Toronto · New York, {hours}
         <span className="animate-pulse" style={{ opacity: blinking ? 0 : 1 }}>
           :
         </span>
