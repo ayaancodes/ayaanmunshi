@@ -1,3 +1,5 @@
+import LandingOverlay from "@/components/LandingOverlay"
+
 export default function HomeLayout({
   children,
   modal,
@@ -6,9 +8,19 @@ export default function HomeLayout({
   modal: React.ReactNode
 }) {
   return (
-    <main className="mx-auto max-w-content px-5 pt-12">
+    <main className="font-sans h-screen snap-y snap-mandatory overflow-y-scroll">
       {modal}
-      {children}
+
+      <section className="h-screen snap-start snap-always">
+        <LandingOverlay />
+      </section>
+
+      <section
+        id="content"
+        className="min-h-screen snap-start snap-always mx-auto max-w-[400px] px-4 pt-10 md:max-w-[700px]"
+      >
+        {children}
+      </section>
     </main>
   )
 }

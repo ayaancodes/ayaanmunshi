@@ -18,39 +18,44 @@ export default function ReadingPage() {
 
   return (
     <>
-      <Header showHomeLink />
+      <Header showHomeLink={true} />
 
-      <h1 className="text-title">Reading</h1>
-      <p className="pt-1 text-[var(--step-small)] text-muted">
+      <h1 className="font-serif text-[2.5rem] tracking-tight text-primary">
+        Reading
+      </h1>
+      <h2 className="text-base font-medium tracking-tight text-foreground">
         things worth keeping, and why.
-      </p>
+      </h2>
 
       {Object.entries(periods).map(([period, items]) => (
-        <section key={period} className="pt-[var(--space-section)]">
-          <h2 className="text-meta uppercase tracking-wider">{period}</h2>
+        <section key={period} className="pt-8">
+          <h3 className="text-xs uppercase tracking-wider text-foreground/60">
+            {period}
+          </h3>
 
-          <ul className="pt-[var(--space-group)]">
+          <div className="flex flex-col pt-2">
             {items.map(item => (
-              <li key={item.href} className="border-b hairline py-4">
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group"
-                >
-                  <span className="block font-medium transition-colors group-hover:text-accent">
+              <a
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group -mx-3 mt-2 rounded-xl px-3 py-3 transition-all duration-300 ease-in-out md:hover:scale-[1.02] md:hover:bg-hoverColor"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <span className="font-medium tracking-tight text-primary group-hover:text-accent">
                     {item.title}
                   </span>
-                  <span className="block text-[var(--step-meta)] text-muted">
+                  <span className="shrink-0 text-sm text-foreground">
                     {item.author}
                   </span>
-                </a>
-                <p className="max-w-content pt-2 text-[var(--step-small)] text-muted">
+                </div>
+                <p className="pt-1 text-sm text-foreground/75 leading-snug">
                   {item.note}
                 </p>
-              </li>
+              </a>
             ))}
-          </ul>
+          </div>
         </section>
       ))}
 

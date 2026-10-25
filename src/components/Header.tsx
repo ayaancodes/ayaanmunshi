@@ -1,12 +1,5 @@
 import Link from "next/link";
 import { IoArrowBack } from "react-icons/io5";
-import { ThemeToggle } from "@/components/theme-toggle";
-
-const LINKS = [
-  { href: "/thoughts", label: "writing" },
-  { href: "/experiences", label: "experiences" },
-  { href: "/reading", label: "reading" },
-];
 
 interface HeaderProps {
   showHomeLink?: boolean;
@@ -14,30 +7,41 @@ interface HeaderProps {
 
 export default function Header({ showHomeLink = false }: HeaderProps) {
   return (
-    <nav className="flex items-center justify-between pb-10 text-[var(--step-small)]">
-      {showHomeLink ? (
-        <Link
-          href="/"
-          className="flex items-center gap-1.5 text-muted transition-colors hover:text-accent"
-        >
-          <IoArrowBack className="h-3.5 w-3.5" />
-          home
-        </Link>
-      ) : (
-        <span />
-      )}
-
-      <div className="flex items-center gap-5">
-        {LINKS.map(({ href, label }) => (
+    <nav className="flex items-center justify-between pb-8 tracking-tight">
+      {showHomeLink && (
+        <div>
           <Link
-            key={href}
-            href={href}
-            className="text-muted transition-colors hover:text-accent"
+            href="/"
+            className="hover:text-accent underline-offset-4 transition duration-150 ease-in-out hover:underline"
           >
-            {label}
+            <span className="text-primary flex items-center gap-1">
+              <IoArrowBack className="w-4 h-4" />
+              home
+            </span>
           </Link>
-        ))}
-        <ThemeToggle />
+        </div>
+      )}
+      <div
+        className={`flex items-center gap-5 ${!showHomeLink ? "ml-auto" : ""}`}
+      >
+        <Link
+          href="/thoughts"
+          className="hover:text-accent underline-offset-4 transition duration-150 ease-in-out hover:underline"
+        >
+          <span className="text-primary">thoughts</span>
+        </Link>
+        <Link
+          href="/experiences"
+          className="hover:text-accent underline-offset-4 transition duration-150 ease-in-out hover:underline"
+        >
+          <span className="text-primary">experiences</span>
+        </Link>
+        <Link
+          href="/reading"
+          className="hover:text-accent underline-offset-4 transition duration-150 ease-in-out hover:underline"
+        >
+          <span className="text-primary">reading</span>
+        </Link>
       </div>
     </nav>
   );

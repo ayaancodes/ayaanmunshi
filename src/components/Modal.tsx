@@ -10,13 +10,11 @@ export default function Modal({
   onClose: () => void
 }) {
   return (
-    <div className="fixed inset-0 z-50">
+    <div className="fixed inset-0 z-[99999] pointer-events-auto">
       {/* overlay */}
-      <button
-        type="button"
-        aria-label="Close modal"
-        onClick={onClose}
+      <div
         className="absolute inset-0 bg-black/60"
+        onClick={onClose}
       />
 
       {/* modal */}
@@ -28,7 +26,11 @@ export default function Modal({
           <div className="flex justify-end">
             <button
               type="button"
-              onClick={onClose}
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                onClose()
+              }}
               className="rounded-lg border border-white/10 px-3 py-1 text-sm text-foreground/80 hover:bg-white/5"
             >
               Close

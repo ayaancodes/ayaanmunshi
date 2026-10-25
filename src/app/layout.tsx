@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import { ThemeProvider } from "@/components/theme-provider";
 
 const DESCRIPTION =
   "Software engineering student interested in building systems that connect technology, markets, and people.";
@@ -32,7 +31,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
         <script
           src="https://cdn.peasy.so/peasy.js"
@@ -41,11 +40,9 @@ export default function RootLayout({
         ></script>
       </head>
 
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-          <Analytics />
-          {children}
-        </ThemeProvider>
+      <body className="text-body bg-[#0A0A0A] selection:bg-primary selection:text-hoverColor">
+        <Analytics />
+        {children}
       </body>
     </html>
   );
