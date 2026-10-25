@@ -34,8 +34,16 @@ export default function Home() {
         <br /><br />
         I’ve built and shipped software across many different industries, on track
         to total <span className="hover-accent">2 years</span> of internship
-        experience before my senior year. 
-        
+        experience before my senior year.
+
+      </p>
+
+      <p className="pt-3 text-sm leading-relaxed text-foreground/70">
+        Incoming at <span className="text-primary">Rippling</span> and{' '}
+        <span className="text-primary">BMO Capital Markets</span>. Previously{' '}
+        <span className="text-primary">RBC Capital Markets</span>,{' '}
+        <span className="text-primary">Beats by Dre</span>, and{' '}
+        <span className="text-primary">Canam</span>.
       </p>
 
       {/* EXPLORE */}
