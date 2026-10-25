@@ -55,6 +55,7 @@ export default function Home() {
             { href: '/experiences', title: 'Experiences', desc: 'Roles, teams, and tech I’ve worked on.' },
             { href: '/reading', title: 'Reading', desc: 'Things worth keeping, and why.' },
             { href: '/thoughts', title: 'Writing', desc: 'Notes on markets, systems, and poker.' },
+            { href: '/places', title: 'Places', desc: 'The cities that shaped me.' },
           ].map(({ href, title, desc }) => (
             <Link
               key={href}
