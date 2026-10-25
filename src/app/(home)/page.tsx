@@ -6,11 +6,10 @@ import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SocialLinks from '@/components/SocialLinks'
-import Places from '@/components/Places'
 import { THOUGHTS } from '@/content/thoughts'
 import { EXPERIENCES } from '@/content/experiences'
 
-function SectionLinkList({
+function Section({
   title,
   href,
   moreLabel,
@@ -39,35 +38,67 @@ function SectionLinkList({
   )
 }
 
-function Row({
+function WorkRow({
   href,
-  primary,
-  secondary,
+  company,
+  role,
   meta,
-  external,
+  image,
 }: {
   href: string
-  primary: string
-  secondary?: string
+  company: string
+  role: string
   meta: string
-  external?: boolean
+  image: string
+}) {
+  return (
+    <li className="border-b hairline last:border-0">
+      <Link
+        href={href}
+        className="group relative -mx-3 flex min-h-[80px] items-center overflow-hidden rounded-lg px-3 py-4"
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 md:group-hover:opacity-100"
+          style={{
+            backgroundImage: `linear-gradient(to right, hsl(var(--background)) 0%, hsl(var(--background)) 38%, hsl(var(--background) / 0) 92%), url(${image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <div className="relative z-10 flex w-full items-baseline justify-between gap-4">
+          <span className="min-w-0">
+            <span className="block font-medium transition-colors md:group-hover:text-accent">
+              {company}
+            </span>
+            <span className="block pt-0.5 text-[var(--step-small)] text-muted">
+              {role}
+            </span>
+          </span>
+          <span className="shrink-0 text-meta">{meta}</span>
+        </div>
+      </Link>
+    </li>
+  )
+}
+
+function WritingRow({
+  href,
+  title,
+  meta,
+}: {
+  href: string
+  title: string
+  meta: string
 }) {
   return (
     <li>
       <Link
         href={href}
-        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         className="group flex items-baseline justify-between gap-6 py-2"
       >
-        <span className="min-w-0">
-          <span className="block truncate transition-colors group-hover:text-accent">
-            {primary}
-          </span>
-          {secondary && (
-            <span className="block text-[var(--step-meta)] text-muted">
-              {secondary}
-            </span>
-          )}
+        <span className="truncate transition-colors group-hover:text-accent">
+          {title}
         </span>
         <span className="shrink-0 text-meta">{meta}</span>
       </Link>
@@ -91,10 +122,10 @@ export default function Home() {
     <>
       <Header />
 
-      <div className="flex items-start justify-between gap-6">
-        <div className="min-w-0">
+      <div className="flex items-start justify-between gap-8">
+        <div className="min-w-0 pt-1">
           <h1 className="text-display">Ayaan Munshi</h1>
-          <p className="pt-1 text-[var(--step-small)] text-muted">
+          <p className="pt-1.5 text-[var(--step-small)] text-muted">
             engineer · student · mustang
           </p>
         </div>
@@ -102,10 +133,10 @@ export default function Home() {
         <Image
           src="/photos/headshot.jpg"
           alt="Ayaan Munshi"
-          width={160}
-          height={160}
+          width={320}
+          height={400}
           priority
-          className="h-20 w-20 shrink-0 rounded-full object-cover sm:h-24 sm:w-24"
+          className="h-[120px] w-24 shrink-0 rounded-xl object-cover object-[center_22%] sm:h-[160px] sm:w-32"
         />
       </div>
 
@@ -125,51 +156,36 @@ export default function Home() {
         </p>
       </div>
 
-      <SectionLinkList title="Writing" href="/thoughts" moreLabel="all writing">
+      <Section title="Work" href="/experiences" moreLabel="all experiences">
+        {recentWork.map(e => (
+          <WorkRow
+            key={e.slug}
+            href="/experiences"
+            company={e.company}
+            role={e.role}
+            meta={e.start}
+            image={e.image}
+          />
+        ))}
+      </Section>
+
+      <Section title="Writing" href="/thoughts" moreLabel="all writing">
         {recentWriting.map(t => (
-          <Row
+          <WritingRow
             key={t.slug}
             href={`/thoughts/${t.slug}`}
-            primary={t.title}
+            title={t.title}
             meta={shortDate(t.date)}
           />
         ))}
-      </SectionLinkList>
+      </Section>
 
-      <SectionLinkList
-        title="Work"
-        href="/experiences"
-        moreLabel="all experiences"
-      >
-        {recentWork.map(e => (
-          <Row
-            key={e.slug}
-            href="/experiences"
-            primary={e.company}
-            secondary={e.role}
-            meta={e.start}
-          />
-        ))}
-      </SectionLinkList>
-
-      <Places />
-
-      <SectionLinkList title="Elsewhere">
-        <Row
-          href="/reading"
-          primary="Reading"
-          secondary="Things worth keeping."
-          meta=""
-        />
+      <Section title="Elsewhere">
+        <WritingRow href="/reading" title="Reading" meta="" />
         {blackjackUnlocked && (
-          <Row
-            href="/play"
-            primary="Blackjack"
-            secondary="You found the ace."
-            meta=""
-          />
+          <WritingRow href="/play" title="Blackjack" meta="you found the ace" />
         )}
-      </SectionLinkList>
+      </Section>
 
       <div className="pt-[var(--space-section)]">
         <SocialLinks />
