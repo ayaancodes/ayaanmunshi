@@ -2,11 +2,19 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 import { Analytics } from "@vercel/analytics/react";
 
+// Set NEXT_PUBLIC_SITE_URL once a custom domain is attached; until then this
+// follows whatever URL Vercel assigns so og:image resolves correctly.
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000");
+
 const DESCRIPTION =
   "Software engineering student interested in building systems that connect technology, markets, and people.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ayaanmunshi.com"),
+  metadataBase: new URL(SITE_URL),
   title: "Ayaan Munshi",
   description: DESCRIPTION,
   icons: { icon: "/favicon.svg" },

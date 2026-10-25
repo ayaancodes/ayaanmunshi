@@ -51,6 +51,12 @@ export default function PlacesPage() {
             <p className="pt-1 text-sm leading-snug text-foreground/75">
               {place.note}
             </p>
+
+            {place.credit && (
+              <p className="pt-1 text-[11px] text-foreground/40">
+                Photo: {place.credit}
+              </p>
+            )}
           </figure>
         ))}
       </section>
