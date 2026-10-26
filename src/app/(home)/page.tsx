@@ -29,7 +29,7 @@ export default function Home() {
       <p className="pt-4 text-base text-foreground leading-relaxed">
         Hi, I’m Ayaan, an engineering student fascinated by how
         <span className="hover-accent"> markets </span> shape systems, how
-        <span className="hover-accent"> politics </span> drives incentives, and how
+        <span className="hover-accent"> incentives </span> drive behaviour, and how
         <span className="hover-accent"> technology </span> amplifies them both.
         <br /><br />
         I’ve built and shipped software across many different industries,

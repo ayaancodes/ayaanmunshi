@@ -59,7 +59,8 @@ export default function LandingOverlay() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="mt-8 text-sm sm:text-base text-zinc-400"
             >
-              software engineering student from toronto, canada.
+              software engineering student based in new york, from toronto,
+              canada.
             </motion.p>
           </div>
         </div>
