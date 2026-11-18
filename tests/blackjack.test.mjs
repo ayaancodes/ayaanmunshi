@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { score, deal, hit, stand, shuffledDeck } from '../src/lib/blackjack.ts';
+import { score, deal, hit, stand, shuffledDeck, beginDealer, dealerStep, hitStep } from '../src/lib/blackjack.ts';
 
 const card = (rank, suit = '♠') => ({ rank: String(rank), suit });
 const hand = (...ranks) => ranks.map(rank => card(rank));
@@ -57,4 +57,42 @@ test('a hit to 21 resolves dealer play without awarding a false natural', () => 
   assert.equal(score(next.player), 21);
   assert.equal(next.phase, 'finished');
   assert.equal(next.result, 'You win!');
+});
+
+
+test('animated dealer play advances by exactly one card and locks player actions', () => {
+  const initial = round(['K', '8'], ['2', '3'], ['4', '5', '6']);
+  const started = beginDealer(initial);
+  assert.equal(started.phase, 'dealer');
+  assert.equal(hitStep(started), started);
+  const first = dealerStep(started);
+  assert.equal(first.dealer.length, 3);
+  assert.equal(score(first.dealer), 9);
+  assert.equal(first.phase, 'dealer');
+  assert.equal(started.dealer.length, 2);
+  const second = dealerStep(first);
+  assert.equal(second.dealer.length, 4);
+  assert.equal(score(second.dealer), 14);
+  const third = dealerStep(second);
+  assert.equal(score(third.dealer), 20);
+  const finished = dealerStep(third);
+  assert.equal(finished.phase, 'finished');
+  assert.equal(finished.outcome, 'loss');
+  assert.equal(dealerStep(finished), finished);
+});
+test('an animated hit to 21 waits for the dealer and exposes the new card first', () => {
+  const next = hitStep(round(['7', '4'], ['3', '4'], ['K', '3', '7']));
+  assert.equal(next.phase, 'dealer');
+  assert.equal(score(next.player), 21);
+  assert.equal(next.dealer.length, 2);
+  assert.equal(next.outcome, undefined);
+  const finished = stand(next);
+  assert.equal(finished.outcome, 'win');
+});
+test('outcomes identify naturals, busts and pushes without matching result copy', () => {
+  assert.equal(deal(hand('A','K','K','A')).outcome, 'push');
+  assert.equal(deal(hand('A','9','K','7')).outcome, 'win');
+  assert.equal(deal(hand('9','A','7','K')).outcome, 'loss');
+  assert.equal(hitStep(round(['K','8'],['9','7'],['5'])).outcome, 'loss');
+  assert.equal(stand(round(['K','8'],['K','8'],['2'])).outcome, 'push');
 });

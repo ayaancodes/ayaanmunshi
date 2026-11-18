@@ -167,3 +167,94 @@ body:has(.portfolio-root){background:#161616}
 .inline-logo,.inline-monogram{display:inline-block;flex:none;width:16px;height:16px;object-fit:contain;border-radius:3px;align-self:center;translate:0 1px}
 .inline-monogram{background:#dce6bb;color:#38402b;font:500 14px/16px Satoshi,sans-serif;text-align:center}
 @media(max-width:580px){.inline-logo,.inline-monogram{width:14px;height:14px}.inline-monogram{font-size:12px;line-height:14px}.life-section .inline-brand{gap:5px}}
+
+/* Reference refinements: compact color, continuous contours, and separate destinations. */
+.contour-background{inset:0;height:100%;opacity:.5;mask-image:none}
+.contour-background svg{stroke-opacity:.12;stroke-width:.7}
+.profile-header{gap:14px}
+.portrait{object-position:50% 27%;filter:none}
+.profile-socials{gap:9px;margin-top:8px}
+.profile-socials a{width:28px;height:28px;border-radius:5px;padding:5px;transition:transform .2s,filter .2s}
+.profile-socials a:hover{transform:translateY(-2px);filter:brightness(1.15)}
+.profile-socials .social-linkedin{color:#fff;background:#0a66c2}
+.profile-socials .social-github{color:#24292f;background:#f4f4f4}
+.profile-socials .social-mail{color:#fff;background:#bd594d}
+.life-section .brand-link,.brand-link{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-weight:500;text-decoration:none}
+.brand-icon{display:inline-grid;place-items:center;position:relative;width:19px;height:19px;flex:none;vertical-align:middle}
+.brand-icon img,.brand-monogram{width:100%;height:100%;object-fit:contain;border-radius:3px;transition:opacity .18s,transform .18s}
+.brand-monogram{display:grid;place-items:center;font:600 17px/1 Satoshi,sans-serif;background:#dcf0a7;color:#28563a}
+.brand-external{position:absolute;inset:0;display:grid;place-items:center;font:22px/1 Satoshi,sans-serif;opacity:0;transform:translate(-3px,3px);transition:opacity .18s,transform .18s}
+.brand-link:hover .brand-icon img,.brand-link:hover .brand-monogram,.brand-link:focus-visible .brand-icon img,.brand-link:focus-visible .brand-monogram{opacity:0;transform:translate(2px,-2px)}
+.brand-link:hover .brand-external,.brand-link:focus-visible .brand-external{opacity:1;transform:none}
+.portfolio-root .brand-aker{color:#a5d77a}.portfolio-root .brand-western{color:#bc98e8}.portfolio-root .brand-bmo{color:#74b7f2}.portfolio-root .brand-rbc{color:#80adf2}.portfolio-root .brand-rippling{color:#f2cc76}
+.portfolio-root .brand-link:hover{filter:brightness(1.15)}
+.life-location{display:inline-block;margin-left:10px;color:#777;font-size:11px;letter-spacing:0}
+.life-section li{line-height:29px}
+.work-company{margin:0;font-size:14px;font-weight:500;line-height:24px;letter-spacing:-.2px}
+.work-company .brand-icon{width:20px;height:20px}.work-company .brand-link{gap:7px}
+.work-year{font-size:11px;line-height:24px;color:#9d9d9d}
+.work-role{margin:3px 0 0;padding-left:27px!important;font-size:12px;line-height:22px;color:#b0b0b0}
+.work-location{display:inline-block;margin-left:10px;font-size:10px;color:#858585}
+.work-description{padding-left:27px;margin-top:0;font-size:11px;line-height:20px;color:#898989}
+.work-grid>.work-card:last-child:nth-child(odd){grid-column:1/-1;width:calc(50% - 10px);justify-self:center}
+.skill-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:22px}
+.skill-cards>div{border:1px solid #353c30;border-radius:7px;background:#23281f;padding:15px 13px}
+.skill-cards h3{margin:0 0 5px;font-size:12px;font-weight:500;color:#cae5ac}.skill-cards p{margin:0;color:#9ca594;font-size:10px;line-height:1.7}
+.panel-company-link{display:inline-flex;gap:9px;color:#c7c7c7!important;font-size:11px;margin-top:17px}.panel-company-link:hover{text-decoration:underline}
+.illustration-disclosure a{text-decoration:underline;text-underline-offset:3px}
+/* A single coherent illustrated scheduling loop: week, shift, publication. */
+.schedule-walkthrough{top:9%;left:7%;width:87%;height:86%;transform:rotate(-2deg)}
+.schedule-walkthrough .shift-cell i{animation:none}
+.schedule-week{position:relative;display:flex;white-space:pre}.schedule-week>span{animation:week-old 14s infinite}.schedule-week>b{position:absolute;left:1.9cqw;font-weight:400;opacity:0;animation:week-new 14s infinite}
+.schedule-walkthrough .publish{position:relative;min-width:13cqw;text-align:center}.publish>b{position:absolute;left:0;right:0;font-weight:500;opacity:0;animation:publish-label 14s infinite}.publish>span{animation:publish-default 14s infinite}
+.created-shift i{opacity:0;animation:created-shift 14s infinite!important}
+.shift-editor{position:absolute;left:38%;top:24%;width:43%;padding:2.5cqw;border:1px solid #ded4c6;border-radius:1.2cqw;background:#fffdf8;box-shadow:0 2cqw 8cqw #4e293c26;color:#4e3440;opacity:0;animation:shift-editor 14s infinite}
+.shift-editor small{font-size:1.3cqw;color:#9c8174;display:block;letter-spacing:.1cqw}.shift-editor>b{display:block;font-size:2.4cqw;margin:1cqw 0}.shift-editor>div{border:1px solid #e9e0d6;padding:1.5cqw;font-size:1.7cqw;border-radius:.5cqw}.shift-editor>div>span{display:block;color:#9c8174;font-size:1.4cqw;margin-top:.7cqw}.shift-save{display:block;text-align:center;font-size:1.7cqw;margin-top:2cqw;padding:1cqw;background:#f2c757;border-radius:.5cqw}
+.schedule-cursor{position:absolute;font:4cqw/1 Arial;color:#3e2933;text-shadow:0 1px white;left:28%;top:20%;opacity:0;animation:schedule-cursor 14s infinite}
+.schedule-progress{position:absolute;bottom:0;left:6.4cqw;right:0;height:3cqw;background:#f4eee7}.schedule-progress i{display:block;height:100%;width:0;background:#e6d4a0;animation:schedule-progress 14s infinite}.schedule-progress span{position:absolute;inset:0;text-align:center;font-size:1.3cqw;line-height:3cqw;color:#786b54}
+.schedule-toast{position:absolute;bottom:5%;left:32%;padding:1.8cqw 3cqw;background:#4e293c;border:1px solid #684254;color:#fff2ce;border-radius:1cqw;box-shadow:0 1cqw 4cqw #36203033;font-size:2cqw;opacity:0;animation:schedule-toast 14s infinite}
+@keyframes week-old{0%,10%,94%,100%{opacity:1}15%,90%{opacity:0}}@keyframes week-new{0%,10%,94%,100%{opacity:0}15%,90%{opacity:1}}
+@keyframes shift-editor{0%,24%,51%,100%{opacity:0;transform:translateY(4px) scale(.97)}29%,46%{opacity:1;transform:none}}
+@keyframes created-shift{0%,47%,96%,100%{opacity:0;transform:scale(.92)}53%,92%{opacity:1;transform:none}}
+@keyframes schedule-cursor{0%,5%,87%,100%{opacity:0;left:28%;top:20%}9%,14%{opacity:1;left:28%;top:20%}24%,29%{opacity:1;left:57%;top:58%}43%,47%{opacity:1;left:64%;top:67%}61%,67%{opacity:1;left:87%;top:21%}77%{opacity:0;left:87%;top:21%}}
+@keyframes schedule-progress{0%,63%,100%{width:0}78%,94%{width:100%}}@keyframes schedule-toast{0%,76%,96%,100%{opacity:0;transform:translateY(5px)}80%,91%{opacity:1;transform:none}}
+@keyframes publish-label{0%,76%,96%,100%{opacity:0}80%,91%{opacity:1}}@keyframes publish-default{0%,76%,96%,100%{opacity:1}80%,91%{opacity:0}}
+/* A small, inviting game with readable state and no financial stakes. */
+.blackjack-launch{width:100%;display:flex;gap:20px;align-items:center;margin-top:36px;padding:23px 25px;border:1px solid #486250;border-radius:11px;background:linear-gradient(110deg,#253a2c,#29362c 60%,#393f2d);color:#f3f2dd;cursor:pointer;text-align:left;transition:border-color .2s,background .2s}
+.blackjack-launch:hover{border-color:#7e9978;background:linear-gradient(110deg,#2d4533,#2c3c30 60%,#444a33)}
+.blackjack-launch>span{color:inherit}.blackjack-launch strong{display:block;font-size:16px;font-weight:500;line-height:1.5}.blackjack-launch small{display:block;font-size:11px;color:#b6c1ac;margin-top:3px}.launch-arrow{margin-left:auto;font-size:24px!important}
+.launch-cards{position:relative;display:block;width:48px;height:47px;flex:none}.launch-cards i{position:absolute;display:grid;place-items:center;width:29px;height:40px;background:#f6edce;border:1px solid #d5cba9;border-radius:4px;color:#aa554d;font:22px Georgia,serif;transform:rotate(-14deg);left:0;top:1px}.launch-cards i:last-child{left:17px;top:5px;transform:rotate(13deg);color:#293f31}
+.blackjack-dialog{width:min(510px,calc(100% - 28px));padding:27px;background:#202820;border-color:#53604a;border-radius:16px;color:#f4f1dc}
+.game-eyebrow{display:block;font-size:9px;color:#a4b296;letter-spacing:1.6px;margin-bottom:5px}.blackjack-header h2{font-size:24px;line-height:1.4}.blackjack-header p{font-size:11px;line-height:1.8;color:#b1bba5;margin-top:5px}.blackjack-header{gap:9px}
+.game-toolbar{display:flex;align-items:center;justify-content:space-between;margin:17px 0 8px;color:#b0bfa3;font-size:9px;letter-spacing:1.2px}.game-toolbar>span>span{margin:0 7px;color:#d7c788}.game-info{width:35px;height:35px;display:grid;place-items:center;background:none;border:1px solid #53624b;color:#cbd7bb;border-radius:50%;font-size:14px!important;cursor:pointer}
+.blackjack-rules{background:#2a3428;border:1px solid #43513c;padding:13px 15px;border-radius:7px;font-size:11px;margin:0 0 15px;color:#c1cdb8}.blackjack-rules strong{color:#e1e7d3;font-weight:500}.blackjack-rules p{margin:6px 0 0}
+.card-table{padding:20px;background:radial-gradient(ellipse at 50% 45%,#284c35,#1c392a);border-color:#53714780;border-radius:11px;box-shadow:inset 0 0 60px #11231533}
+.hand-label{align-items:center;min-height:29px;font-size:12px;color:#c1d2b9;margin-bottom:12px}.hand-total{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:29px;padding:0 7px;border-radius:7px;background:#8bad7729;border:1px solid #89a67340;font-size:15px;animation:total-pop .28s ease}.hand-total small{font-size:10px;color:#b9c7b0;margin-left:3px}
+.dealer-label{display:flex;align-items:center;gap:8px}.dealer-avatar{display:grid;place-items:center;width:29px;height:29px;background:#89987938;border:1px solid #a8b39760;border-radius:50%;overflow:hidden}.dealer-avatar svg{width:25px;height:25px;fill:#afc09c}
+.playing-cards{min-height:92px;gap:9px;padding:2px}.playing-card{width:61px;height:87px;border-radius:6px;padding:7px 9px;animation:card-deal .34s cubic-bezier(.2,.7,.2,1);transform-origin:center bottom}.playing-card.new-card{scale:1.035}.playing-card b{font-size:20px}.playing-card>span{font-size:29px}.playing-card.card-back{background:repeating-linear-gradient(45deg,#426146 0 3px,#36513b 3px 6px);border-color:#e4d8ae;color:#d4c88e}
+.table-divider{margin:13px 0;color:#c9d4a233;font-size:16px}.round-message{text-align:center;margin:17px 0 18px;min-height:51px}.round-quip{font-size:18px;line-height:1.5;margin:0;color:#e2d6a3}.round-result{font-size:11px;line-height:1.7;margin:3px 0 0;min-height:19px;color:#b7c3ab}
+.game-actions{gap:8px}.game-actions button{min-height:44px;flex:1;padding:10px 12px;border-color:#5f7552;background:#405b37;color:#f4f2df;font-size:13px}.game-actions button:hover:not(:disabled){background:#506e45}.game-actions button:disabled{opacity:.4}.game-actions button:last-child{flex:1.45;margin-left:0;border-color:#6b7051;background:#424833;color:#e2ddb9;font-size:12px}.game-actions button>span{margin-left:5px}
+.game-stats{display:flex;justify-content:center;gap:28px;padding-top:18px;margin-top:19px;border-top:1px solid #3a4734;font-size:11px;color:#aab99f}.game-stats b{font-size:15px;color:#dce5cf;font-weight:500;margin-right:4px}
+@keyframes card-deal{from{opacity:0;transform:translate(12px,-12px) rotate(5deg) scale(.93)}to{opacity:1;transform:none}}@keyframes total-pop{from{transform:scale(.88);opacity:.6}to{transform:none;opacity:1}}
+.motion-paused .playing-card,.motion-paused .hand-total{animation:none!important}
+@media(max-width:760px){.work-role{flex-basis:auto}.work-company{font-size:13px}.work-year{font-size:10px}.work-meta{gap:6px}.work-location{margin-left:6px}.work-company .brand-link{gap:5px}.work-company .brand-icon{width:17px;height:17px}}
+@media(max-width:580px){.profile-header{gap:13px}.portrait{width:88px;height:88px}.profile-header h1{font-size:25px}.profile-socials{gap:9px;margin-top:7px}.profile-socials a{width:27px;height:27px}.life-section li{line-height:26px}.life-location{font-size:10px;margin-left:8px}.life-section .brand-link{white-space:normal;vertical-align:baseline}.brand-icon{width:16px;height:16px}.work-grid>.work-card:last-child:nth-child(odd){grid-column:auto;width:100%}.work-company{font-size:14px}.work-company .brand-icon{width:20px;height:20px}.work-year{font-size:11px}.work-role{padding-left:25px!important;font-size:12px}.work-description{padding-left:25px;font-size:11px}.skill-cards{grid-template-columns:1fr;gap:8px}.skill-cards>div{padding:12px 14px}.skill-cards h3{font-size:13px}.skill-cards p{font-size:11px}.blackjack-launch{padding:20px 17px;gap:15px}.blackjack-launch strong{font-size:15px}.blackjack-launch small{font-size:10px}.blackjack-dialog{padding:20px}.blackjack-header h2{font-size:22px}.blackjack-header p{font-size:10px}.card-table{padding:16px}.playing-card{width:52px;height:76px;padding:6px 8px}.playing-cards{gap:8px;min-height:81px}.game-actions button{padding:9px 8px;font-size:12px}.game-actions button:last-child{font-size:11px}.game-stats{gap:20px;font-size:11px}.game-stats b{font-size:14px}}
+@media(max-width:360px){.portfolio{padding-left:18px;padding-right:18px}.profile-header h1{font-size:22px}.profile-role{font-size:13px}.portrait{width:78px;height:84px}.blackjack-launch{gap:13px;padding:18px 13px}.blackjack-launch strong{font-size:14px}.blackjack-launch small{font-size:9px}.blackjack-header h2{font-size:20px}.blackjack-dialog{padding:16px}.card-table{padding:14px}.playing-card{width:49px;height:71px}.playing-cards{min-height:76px}.work-company{font-size:13px}.work-year{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.schedule-week>span,.publish>span{opacity:1}.schedule-week>b,.publish>b,.shift-editor,.schedule-cursor,.schedule-toast{opacity:0}.created-shift i{opacity:1}.playing-card.new-card{scale:1}.portfolio-root *,.portfolio-root *::before,.portfolio-root *::after{animation:none!important;transition:none!important}}
+.brand-aker .brand-icon img{background:#dfe9d5;padding:3px}.brand-western .brand-icon img{background:#eee6f6;padding:2px;border-radius:3px}.brand-bmo .brand-icon img{border-radius:3px}
+.preview-agent{background:#d9e3d6}
+.aker-showcase{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 25%,#edf3e8,#becfbe);font-family:Satoshi,sans-serif}
+.aker-showcase-heading{position:absolute;top:7%;left:7%;right:7%;display:flex;align-items:center;justify-content:space-between;gap:10px}.aker-showcase-heading img{width:20cqw;height:auto;object-fit:contain}.aker-showcase-heading>span{font-size:1.2cqw;font-weight:500;letter-spacing:.14cqw;color:#51715b}
+.aker-product-frame{position:absolute;left:7%;right:7%;top:20%;height:65%;background:#f2f5f1;border:.4cqw solid #eff5ed;border-radius:1.5cqw;overflow:hidden;box-shadow:0 2.6cqw 5cqw #2645362a;transform:perspective(1000px) rotateX(3deg) rotateY(-3deg)}
+.aker-slide{position:absolute;inset:0;opacity:0;animation:aker-crossfade 18s infinite;will-change:opacity}.aker-slide img{object-fit:cover;object-position:center top;animation:aker-pan 18s infinite}.aker-slide-0{opacity:1;animation-delay:0s}.aker-slide-1,.aker-slide-1 img{animation-delay:6s}.aker-slide-2,.aker-slide-2 img{animation-delay:12s}
+.aker-chapters{position:absolute;bottom:5%;left:7%;right:7%;display:flex;gap:2.7cqw;font-size:1.5cqw;color:#59725c}.aker-chapters span{padding-bottom:.4cqw;border-bottom:1px solid #6d87683d}
+.preview-agent .illustration-label{font-size:1.2cqw;right:7%;bottom:5%;color:#59725c;opacity:1}
+@keyframes aker-crossfade{0%,28%{opacity:1}33%,94%{opacity:0}100%{opacity:1}}@keyframes aker-pan{0%{transform:scale(1)}30%,100%{transform:scale(1.045)}}
+.stocks-section{margin-top:72px}.stocks-section .section-heading{margin-bottom:20px}.stocks-section h2{font-size:25px}.stocks-section .section-heading p{font-size:13px}.stocks-unit{font-size:10px;color:#929292;border:1px solid #3b3b3b;border-radius:5px;padding:4px 7px}
+.market-widget-shell{position:relative;min-width:0;width:100%;min-height:430px;border:1px solid #353535;border-radius:10px;overflow:hidden;background:#191919}.market-widget{width:100%;min-height:430px}.market-widget iframe{width:100%!important;max-width:100%;border:0}.market-status{position:absolute;left:16px;right:16px;bottom:14px;padding:9px 11px;border-radius:5px;font-size:10px;background:#252925e8;color:#b5c0ad;display:flex;align-items:center;justify-content:space-between;gap:15px;pointer-events:none}.market-status a{pointer-events:auto;white-space:nowrap;text-decoration:underline;text-underline-offset:3px}
+.market-caption{display:flex;align-items:flex-start;gap:24px;justify-content:space-between;margin-top:12px;color:#919191;font-size:10px}.market-caption p{margin:0;max-width:570px;line-height:1.8}.market-caption p a{text-decoration:underline;text-underline-offset:3px}.market-caption nav{display:flex;gap:12px;flex:none;line-height:1.8}.market-caption nav a:hover{text-decoration:underline}
+@media(max-width:580px){.stocks-section{margin-top:50px}.stocks-section h2{font-size:23px}.stocks-section .section-heading p{font-size:12px}.market-caption{display:block;font-size:10px}.market-caption nav{margin-top:9px}.market-status{font-size:9px;gap:10px;flex-wrap:wrap}.preview-agent .illustration-label{font-size:1.2cqw}}
+@media(prefers-reduced-motion:reduce){.aker-slide{opacity:0}.aker-slide-0{opacity:1}.aker-slide img{transform:none}}
+.preview-agent .illustration-label{font-size:7px}
+@media(max-width:580px){.preview-agent .illustration-label{font-size:6px}}
+@media(prefers-reduced-motion:reduce){.created-shift i{animation:none!important}}

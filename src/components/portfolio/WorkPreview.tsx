@@ -1,25 +1,22 @@
+import Image from 'next/image';
 import type { Work } from '@/content/portfolio';
 
 const bars = [26, 40, 32, 59, 44, 67, 61, 83, 73, 94, 78, 100];
 
 export default function WorkPreview({ work }: { work: Work }) {
   return (
-    <div className={`work-preview preview-${work.scene}`} role="img" aria-label={`Illustration, not shipped product UI. ${work.illustration}`}>
+    <div className={`work-preview preview-${work.scene}`} role="img" aria-label={`${work.scene === 'agent' ? 'Aker AI public product preview.' : 'Illustration, not shipped product UI.'} ${work.illustration}`}>
       <div className="scene" aria-hidden="true">
-        {work.scene === 'agent' && <>
-          <div className="agent-orbit orbit-one" /><div className="agent-orbit orbit-two" />
-          <div className="agent-window">
-            <div className="mini-toolbar"><span className="agent-symbol">✳</span><strong>Workspace</strong><span className="mini-dots">···</span></div>
-            <div className="agent-message">Make room for your next idea.</div>
-            <div className="agent-answer"><span className="agent-spark">✳</span><div><strong>Let’s put the pieces together.</strong><span className="skeleton long"/><span className="skeleton short"/></div></div>
-            <div className="context-chips"><span>◎ Context</span><span>↗ Explore</span><span>✓ Create</span></div>
-            <div className="agent-input"><span>Ask anything</span><span>↑</span></div>
-          </div>
-          <div className="floating-note"><span>✦</span> A little less busywork.</div>
-        </>}
-        {work.scene === 'schedule' && <div className="schedule-window">
-          <aside className="schedule-sidebar"><b>R</b><i/><i/><i/><i/><i/></aside>
-          <div className="schedule-main"><div className="mini-toolbar"><strong>Team schedule</strong><span className="mini-dots">···</span></div><div className="schedule-controls"><span>‹ &nbsp; This week &nbsp; ›</span><span className="publish">Publish</span></div><div className="schedule-grid"><div className="day-labels"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span></div>{['AM', 'PM', 'EVE'].map((x, i) => <div className="shift-row" key={x}><span>{x}</span>{Array.from({length: 5}, (_, j) => <div className={`shift-cell shift-${(i+j)%4}`} key={j}>{(i+j)%4 !== 3 && <i style={{animationDelay: `${(i+j)*.3}s`}}><b>{['Design', 'Support', 'Operations'][(i+j)%3]}</b><small>9:00 — 5:00</small></i>}</div>)}</div>)}</div></div>
+        {work.scene === 'agent' && <div className="aker-showcase">
+          <div className="aker-showcase-heading"><Image src="/experience/AkerLockup.png" alt="" width={100} height={19}/><span>INTELLIGENCE FOR REAL ESTATE</span></div>
+          <div className="aker-product-frame">{['dashboard', 'analytics', 'workflow'].map((name,index)=><div className={`aker-slide aker-slide-${index}`} key={name}><Image src={`/experience/aker-${name}-public.jpg`} alt="" fill sizes="(max-width: 580px) 85vw, 600px" quality={95}/></div>)}</div>
+          <div className="aker-chapters"><span>Portfolio</span><span>Analytics</span><span>Workflows</span></div>
+        </div>}
+        {work.scene === 'schedule' && <div className="schedule-window schedule-walkthrough">
+          <aside className="schedule-sidebar"><b>R</b><i/><i/><i/><i/></aside>
+          <div className="schedule-main"><div className="mini-toolbar"><strong>Team schedule</strong><span className="mini-dots">···</span></div><div className="schedule-controls"><span className="schedule-week">‹ &nbsp; <span>This week</span><b>Next week</b> &nbsp; ›</span><span className="publish"><span>Publish</span><b>Published ✓</b></span></div><div className="schedule-grid"><div className="day-labels"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span></div>{['AM', 'PM', 'EVE'].map((x, i) => <div className="shift-row" key={x}><span>{x}</span>{Array.from({length: 5}, (_, j) => <div className={`shift-cell shift-${(i+j)%4} ${i===1 && j===2 ? 'created-shift' : ''}`} key={j}>{((i+j)%4 !== 3 || (i===1 && j===2)) && <i><b>{['Design', 'Support', 'Operations'][(i+j)%3]}</b><small>9:00 – 5:00</small></i>}</div>)}</div>)}</div><div className="schedule-progress"><i/><span>Schedule ready for the team</span></div></div>
+          <div className="shift-editor"><small>NEW SHIFT</small><b>Customer Support</b><div>Wednesday <span>9:00 AM – 5:00 PM</span></div><span className="shift-save">Create shift</span></div><div className="schedule-cursor">↖</div>
+          <div className="schedule-toast">✓ &nbsp; Schedule published</div>
         </div>}
         {work.scene === 'market' && <div className="market-window"><div className="market-top"><strong>Market overview</strong><span><i/> LIVE DEMO</span></div><div className="market-ticker"><span>ETF / SAMPLE</span><b>104.82</b><em>+1.24%</em></div><svg className="price-chart" viewBox="0 0 360 115"><defs><linearGradient id="chart-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#68c6cb" stopOpacity=".22"/><stop offset="1" stopColor="#68c6cb" stopOpacity="0"/></linearGradient></defs><path d="M0 99 L25 89 L43 96 L61 65 L79 76 L96 50 L116 62 L138 43 L153 54 L174 30 L197 41 L222 21 L243 33 L263 15 L286 25 L310 10 L335 17 L360 4 L360 115 L0 115 Z" fill="url(#chart-fill)"/><path className="chart-line" d="M0 99 L25 89 L43 96 L61 65 L79 76 L96 50 L116 62 L138 43 L153 54 L174 30 L197 41 L222 21 L243 33 L263 15 L286 25 L310 10 L335 17 L360 4" fill="none" stroke="#8dd9dc" strokeWidth="2"/></svg><div className="order-book"><span>BID <b>104.81</b></span><span>ASK <b>104.83</b></span><span>SPREAD <b>0.02</b></span></div></div>}
         {work.scene === 'data' && <div className="data-scene"><div className="data-label">CONNECTED SYSTEMS</div><svg viewBox="0 0 440 240"><g fill="none" stroke="#7196c6" strokeOpacity=".4"><path d="M220 120 L80 50 M220 120 L360 50 M220 120 L80 190 M220 120 L360 190 M220 120 L220 28 M220 120 L220 212"/></g><g className="data-pulses" fill="#aad0ff"><circle cx="150" cy="85" r="3"/><circle cx="290" cy="155" r="3"/><circle cx="220" cy="70" r="3"/></g></svg><div className="database"><span>▱</span><strong>Data layer</strong><small>One connected view</small></div>{['API', 'Query', 'Events', 'Apps'].map((x,i) => <div className={`data-node node-${i}`} key={x}><span>▧</span>{x}</div>)}</div>}
@@ -29,7 +26,7 @@ export default function WorkPreview({ work }: { work: Work }) {
         {work.scene === 'engineering' && <div className="engineering-scene"><div className="engineering-label">A challenge. A blank page.<br/><strong>A better way forward.</strong></div><div className="mechanism"><div className="gear gear-one">✳</div><div className="gear gear-two">✳</div><div className="gear-axis"/><span className="measure-line">01 / EXPLORE</span></div><div className="sketch-note">↗ build · test · iterate</div></div>}
         {work.scene === 'design' && <div className="design-scene"><div className="sticky sticky-one"><small>01 / LISTEN</small><b>Start with<br/>the person.</b><span>↗</span></div><div className="sticky sticky-two"><small>02 / EXPLORE</small><div className="idea-doodle">✳</div></div><div className="prototype"><div className="prototype-nav"><i/><span/><b>•••</b></div><div className="prototype-hero"/><div className="prototype-lines"><i/><i/></div><div className="prototype-tiles"><i/><i/><i/></div><div className="prototype-button"/></div><div className="design-caption">Small ideas. Considered details.</div></div>}
       </div>
-      <span className="illustration-label">Illustration</span>
+      <span className="illustration-label">{work.scene === 'agent' ? 'Aker AI public product preview' : 'Illustration'}</span>
     </div>
   );
 }
