@@ -2,11 +2,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { MARKET_WIDGET_ORIGIN, WATCHED_SYMBOLS, marketWidgetConfig, widgetStatus } from '../src/lib/market-widget.ts';
 
-test('market widget keeps the four owner-selected symbols and no invented quotes', () => {
-  assert.deepEqual(WATCHED_SYMBOLS, ['NASDAQ:PLTR', 'NASDAQ:TSLA', 'NASDAQ:NVDA', 'NASDAQ:GOOGL']);
-  assert.deepEqual(marketWidgetConfig.tabs[0].symbols.map(s => s.s), WATCHED_SYMBOLS);
+test('advanced chart keeps the core symbols and a fixed broader watchlist without invented quotes', () => {
+  assert.deepEqual(WATCHED_SYMBOLS.slice(0, 4), ['NASDAQ:PLTR', 'NASDAQ:TSLA', 'NASDAQ:NVDA', 'NASDAQ:GOOGL']);
+  assert.deepEqual(marketWidgetConfig.watchlist, WATCHED_SYMBOLS);
+  assert.equal(new Set(WATCHED_SYMBOLS).size, WATCHED_SYMBOLS.length);
+  assert.equal(WATCHED_SYMBOLS.length, 24);
+  assert.equal(marketWidgetConfig.symbol, WATCHED_SYMBOLS[0]);
+  assert.equal(marketWidgetConfig.editablewatchlist, false);
   assert.equal(JSON.stringify(marketWidgetConfig).includes('apiKey'), false);
-  assert.equal(marketWidgetConfig.width, '100%');
+  assert.equal(marketWidgetConfig.autosize, true);
 });
 test('widget availability accepts only the expected frame and exact provider origin', () => {
   assert.equal(widgetStatus(MARKET_WIDGET_ORIGIN, true, { name: 'tv-widget-ready' }), 'ready');

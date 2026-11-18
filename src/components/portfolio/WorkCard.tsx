@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 import type { Work } from '@/content/portfolio';
 import WorkPreview from './WorkPreview';
 import BrandLink from './BrandLink';
+import PublicProductVideo from './PublicProductVideo';
 
 export default function WorkCard({ work }: { work: Work }) {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -23,7 +24,8 @@ export default function WorkCard({ work }: { work: Work }) {
       {work.intro && <p className="work-dialog-description">{work.intro}</p>}
       {work.skills && <div className="skill-cards">{work.skills.map(skill=><div key={skill.title}><h3>{skill.title}</h3><p>{skill.detail}</p></div>)}</div>}
       {work.description && <p className="work-dialog-description">{work.description}</p>}
-      <p className="illustration-disclosure">{work.scene === 'agent' ? <>Public product preview from <a href="https://aker-ai.com/" target="_blank" rel="noopener noreferrer">Aker AI</a>.</> : <>Illustrative preview. A conceptual visualization, not a shipped product screenshot.</>}</p>
+      <p className="illustration-disclosure">{work.scene === 'agent' || work.scene === 'schedule' ? <>Public product preview from <a href={work.scene === 'agent' ? 'https://aker-ai.com/' : 'https://www.rippling.com/en-CA/products/hr/scheduling'} target="_blank" rel="noopener noreferrer">{work.company}</a>.</> : <>Illustrative view.</>}</p>
+      {open && work.id === 'rbc-technology' && <PublicProductVideo/>}
       {work.url && <a className="panel-company-link" href={work.url} target="_blank" rel="noopener noreferrer">Visit {work.company} <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a>}
     </dialog>
   </article>;
