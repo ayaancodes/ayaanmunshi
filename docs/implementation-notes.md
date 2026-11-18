@@ -31,7 +31,7 @@ Software Engineer title and Aker Applied AI Engineer role are confirmed. No Aker
 
 ## Local environment
 
-Original checkout source and dirty files are preserved. Dependency reuse began via a symlink; Next’s fallback downloader wrote compiler files inside the original ignored node_modules on first boot. This does not alter source, but dependency isolation is being completed before later checks. No env/secret files copied. The repository’s current Next 16.4.3 emitted a known-vulnerability warning; patch remediation is required before claiming release readiness. React 18 emitted a future-deprecation notice (supported for Next 16; removal stated for Next 17).
+Original checkout source and dirty files are preserved. Dependency reuse initially used a symlink; Next’s fallback downloader wrote compiler files inside the original ignored node_modules on first boot. That initial reuse was replaced by an independent APFS copy-on-write dependency copy before the final checks. The inherited Next 16.4.3 emitted a known-vulnerability warning; the isolated checkout is now patched to Next 16.4.6 and its production build passed. No env/secret files were copied. React 18 emitted a future-deprecation notice (supported for Next 16; removal stated for Next 17).
 
 `$poteto-mode` is explicitly invoked in the task brief, but no installed SKILL.md was found in the listed skill roots; no execution is claimed. `until-ready` is followed through explicit checks; hook trust/execution is unverified. Independent review and visual QA are owned by the hub.
 
@@ -59,4 +59,4 @@ The final audit is **not clean**: 26 package-tree findings (20 high, 4 moderate,
 
 No request handler passes visitor input into these build/lint parsers or filesystem-glob tools. The independent reviewer must assess residual risk; no security-clean or deployment-ready claim is made. Automatic major changes/forced downgrades were deliberately not made to silence audit output. React 18 remains supported with a Next 16 deprecation warning; a React 19 migration is not needed for this scoped rebuild. A transitive ESLint package also warns that this machine's Node 23.5 is outside its advertised LTS engine ranges; actual lint/build checks passed. Use an actively supported LTS Node version in deployment/CI.
 
-Remaining release work: owner-supplied final case-study copy, optional headshot/logo replacement, configure and verify the persistent total-visit source, independent final code/scope/security verdict, and user authorization for any external release.
+Remaining release work: owner-supplied final case-study copy, configure and verify the persistent total-visit source, independent final code/scope/security verdict, and user authorization for any external release. A replacement headshot or official Aker logo is optional; the current existing portrait and neutral initial are valid fallbacks, not release blockers.

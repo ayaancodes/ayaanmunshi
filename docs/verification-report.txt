@@ -1,0 +1,90 @@
+Portfolio verification — 2026-11-18T04:37:36.380315+00:00
+
+$ npm run typecheck
+exit=0
+
+> ayaan-portfolio@0.1.0 typecheck
+> tsc --noEmit
+
+
+
+$ node node_modules/eslint/bin/eslint.js src/app/(home)/page.tsx src/app/(home)/layout.tsx src/app/layout.tsx src/components/portfolio src/content/portfolio.ts src/lib/blackjack.ts src/app/api/visitors/route.ts tests eslint.config.mjs next.config.js
+exit=0
+
+
+$ npm test
+exit=0
+
+> ayaan-portfolio@0.1.0 test
+> node --experimental-strip-types --test tests/*.test.mjs
+
+(node:56815) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:56816) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:56816) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/ayaanmunshi/Documents/Codex/2026-11-17/portfolio-rebuild/src/lib/blackjack.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/ayaanmunshi/Documents/Codex/2026-11-17/portfolio-rebuild/package.json.
+✔ aces soften independently without turning a valid hand into a bust (0.5075ms)
+✔ a shuffled deck contains all 52 unique cards and remains independent (0.253292ms)
+✔ initial naturals settle immediately, including a push (0.29875ms)
+✔ hit consumes one card immutably and locks a bust (0.114667ms)
+✔ dealer draws to 17, stands on soft 17, and compares totals (0.159708ms)
+✔ a hit to 21 resolves dealer play without awarding a false natural (0.054583ms)
+(node:56817) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:56817) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/ayaanmunshi/Documents/Codex/2026-11-17/portfolio-rebuild/src/app/api/visitors/route.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/ayaanmunshi/Documents/Codex/2026-11-17/portfolio-rebuild/package.json.
+✔ visitor adapter exposes only a real valid shared aggregate and hides failures (14.291667ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 97.227792
+
+
+$ npm run build
+exit=0
+
+> ayaan-portfolio@0.1.0 build
+> next build --webpack
+
+▲ Next.js 16.4.6 (webpack)
+⚠ React 18 support is deprecated in Next.js 16 and will be removed in Next.js 17. Please upgrade to React 19. Learn more: https://nextjs.org/docs/messages/react-version
+✓ Running next.config.js took 16ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 4.3s
+  Running TypeScript ...
+  Finished TypeScript in 1176ms ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/12) ...
+  Generating static pages using 7 workers (3/12) 
+  Generating static pages using 7 workers (6/12) 
+  Generating static pages using 7 workers (9/12) 
+✓ Generating static pages using 7 workers (12/12) in 318ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /(.)play
+├ ƒ /api/visitors
+├ ○ /experiences
+├ ○ /places
+├ ○ /play
+├ ○ /thoughts
+├ ○ /thoughts/competing-against-smart-people
+├ ○ /thoughts/options-notes-01
+└ ○ /thoughts/options-notes-02
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+

@@ -162,3 +162,8 @@ body:has(.portfolio-root){background:#161616}
 .shift-cell b{font-size:1.23cqw}
 .shift-cell small{font-size:1.03cqw;margin-top:.62cqw}
 @media(max-width:580px){.life-section{font-size:14px;line-height:24px}.degree{font-size:12px;line-height:20px}.team{font-size:12px;line-height:20px}}
+
+.life-section .inline-brand{display:inline-flex;align-items:baseline;gap:6px;white-space:nowrap}
+.inline-logo,.inline-monogram{display:inline-block;flex:none;width:16px;height:16px;object-fit:contain;border-radius:3px;align-self:center;translate:0 1px}
+.inline-monogram{background:#dce6bb;color:#38402b;font:500 14px/16px Satoshi,sans-serif;text-align:center}
+@media(max-width:580px){.inline-logo,.inline-monogram{width:14px;height:14px}.inline-monogram{font-size:12px;line-height:14px}.life-section .inline-brand{gap:5px}}
