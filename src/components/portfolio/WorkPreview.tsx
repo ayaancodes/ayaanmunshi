@@ -1,9 +1,12 @@
+import Image from 'next/image';
 import ProductWalkthrough from './ProductWalkthrough';
 import type { Work } from '@/content/portfolio';
 
 const bars = [26, 40, 32, 59, 44, 67, 61, 83, 73, 94, 78, 100];
 
 export default function WorkPreview({ work }: { work: Work }) {
+  const photo = work.photoPlacement !== 'panel' ? work.photos?.[0] : undefined;
+  if (photo) return <div className="work-preview preview-photo" role="img" aria-label={photo.alt}><Image src={photo.src} alt="" fill sizes="(max-width: 580px) 90vw, 650px" quality={95} style={{ objectPosition: photo.position ?? '50% 50%' }}/></div>;
   return (
     <div className={`work-preview preview-${work.scene}`} role="img" aria-label={`${work.scene === 'agent' || work.scene === 'schedule' ? `${work.company} public product preview.` : 'Illustration, not shipped product UI.'} ${work.illustration}`}>
       <div className="scene" aria-hidden="true">

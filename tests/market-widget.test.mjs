@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { MARKET_WIDGET_ORIGIN, WATCHED_SYMBOLS, marketWidgetConfig, marketWidgetFor, WATCHED_COMPANIES, widgetStatus } from '../src/lib/market-widget.ts';
+import { MARKET_WIDGET_ORIGIN, WATCHED_SYMBOLS, marketWidgetConfig, marketWidgetFor, selectMarketSymbol, WATCHED_COMPANIES, widgetStatus } from '../src/lib/market-widget.ts';
 
 test('advanced chart keeps the core symbols and a fixed broader watchlist without invented quotes', () => {
   assert.deepEqual(WATCHED_SYMBOLS.slice(0, 4), ['NASDAQ:PLTR', 'NASDAQ:TSLA', 'NASDAQ:NVDA', 'NASDAQ:GOOGL']);
@@ -35,4 +35,16 @@ test('mobile selections use only allowlisted symbols and preserve independent ch
   for (const symbol of ['', 'TSLA', 'NASDAQ:TSLA&redirect=example', 'https://example.com']) {
     assert.throws(() => marketWidgetFor(symbol), RangeError);
   }
+});
+
+
+test('re-picking the same symbol forces a fresh chart after independent native search', () => {
+  const initial = { symbol: 'NASDAQ:PLTR', nonce: 0 };
+  const first = selectMarketSymbol(initial, 'NASDAQ:TSLA');
+  const second = selectMarketSymbol(first, 'NASDAQ:TSLA');
+  assert.equal(first.symbol, second.symbol);
+  assert.equal(second.nonce, first.nonce + 1);
+  assert.notEqual(`${first.symbol}-${first.nonce}`, `${second.symbol}-${second.nonce}`);
+  assert.deepEqual(initial, { symbol: 'NASDAQ:PLTR', nonce: 0 });
+  assert.throws(() => selectMarketSymbol(second, 'unlisted'), RangeError);
 });

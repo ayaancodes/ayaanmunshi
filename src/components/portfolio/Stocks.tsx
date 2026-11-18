@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { marketWidgetFor, widgetStatus, WATCHED_SYMBOLS, WATCHED_COMPANIES, type WatchedSymbol } from '@/lib/market-widget';
+import { marketWidgetFor, widgetStatus, WATCHED_SYMBOLS, WATCHED_COMPANIES, type WatchedSymbol, type MarketSelection, selectMarketSymbol } from '@/lib/market-widget';
 
 function MarketChart({ symbol }: { symbol: WatchedSymbol }) {
   const host = useRef<HTMLDivElement>(null);
@@ -34,7 +34,7 @@ function MarketChart({ symbol }: { symbol: WatchedSymbol }) {
       if (iframe && iframe !== observedFrame) {
         observedFrame?.removeEventListener('load', onFrameLoad);
         observedFrame = iframe;
-        iframe.title = `TradingView price chart for ${WATCHED_COMPANIES[symbol]} (${symbol.split(':')[1]})`;
+        iframe.title = 'TradingView price chart and stock watchlist';
         iframe.addEventListener('load', onFrameLoad);
       }
     };
@@ -47,6 +47,7 @@ function MarketChart({ symbol }: { symbol: WatchedSymbol }) {
 }
 
 export default function Stocks() {
-  const [selectedSymbol, setSelectedSymbol] = useState<WatchedSymbol>(WATCHED_SYMBOLS[0]);
-  return <section className="stocks-section" aria-labelledby="stocks-title"><div className="section-heading"><div><h2 id="stocks-title">Stocks I’m watching</h2><p>A few companies that keep me curious.</p></div></div><div className="market-widget-shell"><MarketChart key={selectedSymbol} symbol={selectedSymbol}/><div className="mobile-watchlist"><div className="mobile-watchlist-heading"><span>Watchlist <small>{WATCHED_SYMBOLS.length}</small></span><span aria-live="polite">Chart: {selectedSymbol.split(':')[1]}</span></div><div className="mobile-watchlist-scroll" role="group" aria-label="Choose a stock for the chart">{WATCHED_SYMBOLS.map(symbol => <button type="button" key={symbol} aria-pressed={selectedSymbol === symbol} aria-controls="market-price-chart" onClick={() => setSelectedSymbol(symbol)}><strong>{symbol.split(':')[1]}</strong><span>{WATCHED_COMPANIES[symbol]}</span></button>)}</div></div></div><div className="market-caption"><p>Market data by <a href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer">TradingView</a>. Quotes may be delayed. Quote times and availability are supplied by the provider.</p><a className="market-source-link" href="https://www.tradingview.com/markets/stocks-usa/" target="_blank" rel="noopener noreferrer">Explore markets ↗</a></div></section>;
+  const [selection, setSelection] = useState<MarketSelection>({ symbol: WATCHED_SYMBOLS[0], nonce: 0 });
+  const selectedSymbol = selection.symbol;
+  return <section className="stocks-section" aria-labelledby="stocks-title"><div className="section-heading"><div><h2 id="stocks-title">Stocks I’m watching</h2><p>A few companies that keep me curious.</p></div></div><div className="market-widget-shell"><MarketChart key={`${selectedSymbol}-${selection.nonce}`} symbol={selectedSymbol}/><div className="mobile-watchlist"><div className="mobile-watchlist-heading"><span>Watchlist <small>{WATCHED_SYMBOLS.length}</small></span><span aria-live="polite">Last picked: {selectedSymbol.split(':')[1]}</span></div><div className="mobile-watchlist-scroll" role="group" aria-label="Choose a stock to reload the chart. The pressed button is the last stock picked here.">{WATCHED_SYMBOLS.map(symbol => <button type="button" key={symbol} aria-pressed={selectedSymbol === symbol} aria-controls="market-price-chart" onClick={() => setSelection(previous => selectMarketSymbol(previous, symbol))}><strong>{symbol.split(':')[1]}</strong><span>{WATCHED_COMPANIES[symbol]}</span></button>)}</div></div></div><div className="market-caption"><p>Market data by <a href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer">TradingView</a>. Quotes may be delayed. Quote times and availability are supplied by the provider.</p><a className="market-source-link" href="https://www.tradingview.com/markets/stocks-usa/" target="_blank" rel="noopener noreferrer">Explore markets ↗</a></div></section>;
 }

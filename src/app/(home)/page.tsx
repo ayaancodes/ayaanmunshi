@@ -9,16 +9,16 @@ import MotionToggle from '@/components/portfolio/MotionToggle';
 import BrandLink from '@/components/portfolio/BrandLink';
 import Stocks from '@/components/portfolio/Stocks';
 import City from '@/components/portfolio/City';
-import AmbientRipples from '@/components/portfolio/AmbientRipples';
+import PixelBackground from '@/components/portfolio/PixelBackground';
 import SoccerMoment from '@/components/portfolio/SoccerMoment';
 
 export default function Home() {
   return <>
     <a className="skip-link" href="#engineering">Skip to engineering</a>
-    <AmbientRipples/>
+    <PixelBackground/>
     <main className="portfolio">
       <header className="profile-header">
-        <Image className="portrait" src="/photos/headshot.jpg" width={96} height={96} sizes="96px" quality={95} preload alt="Ayaan Munshi" />
+        <Image className="portrait" src="/photos/headshot-nov18.png" width={96} height={96} sizes="96px" quality={95} preload alt="Ayaan Munshi" />
         <div><h1>Ayaan Munshi</h1><p className="profile-role">Software Engineer</p><nav className="profile-socials" aria-label="Social links"><a className="social-linkedin" href="https://www.linkedin.com/in/ayaan-munshi/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><FaLinkedin/></a><a className="social-github" href="https://github.com/ayaancodes" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)"><FaGithub/></a><a className="social-mail" href="mailto:ayaanmunshi456@gmail.com" aria-label="Email Ayaan"><FiMail/></a></nav></div>
       </header>
       <section className="life-section" aria-labelledby="now-title"><h2 id="now-title">Now</h2><ul><li><span className="life-arrow">↳</span><span>Applied AI Engineer at <BrandLink name="Aker AI" href="https://aker-ai.com/" logo="/experience/AkerLogo-owner.png" brand="aker"/><City>New York</City></span></li><li><span className="life-arrow">↳</span><span>Senior Software Engineering Student at <BrandLink name="Western University" href="https://www.uwo.ca/" logo="/experience/WesternLogo-owner.png" brand="western"/><City>London</City></span></li></ul></section>

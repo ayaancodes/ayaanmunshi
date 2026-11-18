@@ -16,6 +16,7 @@ export const WATCHED_COMPANIES: Record<WatchedSymbol, string> = {
   'NASDAQ:COST': 'Costco', 'NASDAQ:WMT': 'Walmart', 'NYSE:LLY': 'Eli Lilly', 'NYSE:XOM': 'ExxonMobil',
   'NYSE:UNH': 'UnitedHealth', 'NYSE:HD': 'Home Depot', 'NYSE:KO': 'Coca-Cola', 'NYSE:DIS': 'Disney',
 };
+export type MarketSelection = { symbol: WatchedSymbol; nonce: number };
 export const MARKET_WIDGET_ORIGIN = 'https://www.tradingview-widget.com';
 /** Official Advanced Chart: price scale and scrolling watchlist live inside the provider frame. */
 export const marketWidgetConfig = {
@@ -30,6 +31,11 @@ export const marketWidgetConfig = {
 export function marketWidgetFor(symbol: string) {
   if (!(WATCHED_SYMBOLS as readonly string[]).includes(symbol)) throw new RangeError('Unknown watchlist symbol.');
   return { ...marketWidgetConfig, symbol, watchlist: [...WATCHED_SYMBOLS] };
+}
+/** Every local pick reloads, even if native chart controls changed the symbol independently. */
+export function selectMarketSymbol(previous: MarketSelection, symbol: string): MarketSelection {
+  marketWidgetFor(symbol);
+  return { symbol: symbol as WatchedSymbol, nonce: previous.nonce + 1 };
 }
 export function widgetStatus(origin: string, fromExpectedFrame: boolean, data: unknown): 'ready' | 'unavailable' | null {
   if (origin !== MARKET_WIDGET_ORIGIN || !fromExpectedFrame || !data || typeof data !== 'object') return null;
