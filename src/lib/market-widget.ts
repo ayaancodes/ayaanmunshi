@@ -7,6 +7,15 @@ export const WATCHED_SYMBOLS = [
   'NASDAQ:WMT', 'NYSE:LLY', 'NYSE:XOM', 'NYSE:UNH', 'NYSE:HD',
   'NYSE:KO', 'NYSE:DIS',
 ] as const;
+export type WatchedSymbol = typeof WATCHED_SYMBOLS[number];
+export const WATCHED_COMPANIES: Record<WatchedSymbol, string> = {
+  'NASDAQ:PLTR': 'Palantir', 'NASDAQ:TSLA': 'Tesla', 'NASDAQ:NVDA': 'NVIDIA', 'NASDAQ:GOOGL': 'Alphabet',
+  'NASDAQ:AAPL': 'Apple', 'NASDAQ:MSFT': 'Microsoft', 'NASDAQ:AMZN': 'Amazon', 'NASDAQ:META': 'Meta',
+  'NASDAQ:AVGO': 'Broadcom', 'NASDAQ:AMD': 'AMD', 'NASDAQ:NFLX': 'Netflix', 'NYSE:ORCL': 'Oracle',
+  'NYSE:CRM': 'Salesforce', 'NYSE:JPM': 'JPMorgan Chase', 'NYSE:V': 'Visa', 'NYSE:MA': 'Mastercard',
+  'NASDAQ:COST': 'Costco', 'NASDAQ:WMT': 'Walmart', 'NYSE:LLY': 'Eli Lilly', 'NYSE:XOM': 'ExxonMobil',
+  'NYSE:UNH': 'UnitedHealth', 'NYSE:HD': 'Home Depot', 'NYSE:KO': 'Coca-Cola', 'NYSE:DIS': 'Disney',
+};
 export const MARKET_WIDGET_ORIGIN = 'https://www.tradingview-widget.com';
 /** Official Advanced Chart: price scale and scrolling watchlist live inside the provider frame. */
 export const marketWidgetConfig = {
@@ -17,6 +26,11 @@ export const marketWidgetConfig = {
   watchlist: [...WATCHED_SYMBOLS], editablewatchlist: false, widgetbar_width: 240,
   withdateranges: true, save_image: false, details: false, hotlist: false,
 };
+/** Only the portfolio's fixed symbol set can be selected by the local picker. */
+export function marketWidgetFor(symbol: string) {
+  if (!(WATCHED_SYMBOLS as readonly string[]).includes(symbol)) throw new RangeError('Unknown watchlist symbol.');
+  return { ...marketWidgetConfig, symbol, watchlist: [...WATCHED_SYMBOLS] };
+}
 export function widgetStatus(origin: string, fromExpectedFrame: boolean, data: unknown): 'ready' | 'unavailable' | null {
   if (origin !== MARKET_WIDGET_ORIGIN || !fromExpectedFrame || !data || typeof data !== 'object') return null;
   const name = (data as { name?: unknown }).name;
