@@ -188,7 +188,7 @@ body:has(.portfolio-root){background:#161616}
 .brand-link:hover .brand-external,.brand-link:focus-visible .brand-external{opacity:1;transform:none}
 .portfolio-root .brand-aker{color:#a5d77a}.portfolio-root .brand-western{color:#bc98e8}.portfolio-root .brand-bmo{color:#74b7f2}.portfolio-root .brand-rbc{color:#80adf2}.portfolio-root .brand-rippling{color:#f2cc76}
 .portfolio-root .brand-link:hover{filter:brightness(1.15)}
-.life-location{display:inline-block;margin-left:10px;color:#777;font-size:11px;letter-spacing:0}
+.life-location{display:inline-block;margin-left:10px;color:#909090;font-size:11px;letter-spacing:0}
 .life-section li{line-height:29px}
 .work-company{margin:0;font-size:14px;font-weight:500;line-height:24px;letter-spacing:-.2px}
 .work-company .brand-icon{width:20px;height:20px}.work-company .brand-link{gap:7px}
@@ -258,3 +258,5 @@ body:has(.portfolio-root){background:#161616}
 .preview-agent .illustration-label{font-size:7px}
 @media(max-width:580px){.preview-agent .illustration-label{font-size:6px}}
 @media(prefers-reduced-motion:reduce){.created-shift i{animation:none!important}}
+
+.brand-rbc .brand-monogram{background:#15529c;color:#f2d479;font-size:8px;font-weight:600;letter-spacing:-.3px}

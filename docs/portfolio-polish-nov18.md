@@ -4,13 +4,48 @@ Source brief: `/Users/ayaanmunshi/Documents/Codex/2026-11-10/can-you-help-set-up
 
 ## Asked vs delivered
 
-Delivered locally: the existing charcoal/Poppins reference layout, sharper 96px portrait sourcing, full-page curved background, bright social buttons, brand-colored company links with logo/arrow hover and focus transitions, separate experience dialogs, exact NOW/PREVIOUSLY text, confirmed locations, and the nine existing cards. No tenth experience was invented.
+Asked:
+> "The pictgure is not centerrde ... looks piixaleted"
+> "linkedin ghithuyb mail should be lit up. like how caleb did it"
+> "Rermove bachelor of engineering scineces."
+> "The balck streams in the background dont cover the whole p[age only a small part."
+> "feient highlkigths of colours ... coampny anems ... company main coulour"
+> "aker would be greeen ... https://aker-ai.com/ ... go through their main page ... try to do one scrfeen record ... clean one like ... caleb"
+> "on scroll on that icon it should change freom the logo to an ararow to clik on as a link"
+> "for aker itr would be be Fall 2026 ... one line intro ... 3 cards horizontally ... opython, harness engineering, rag"
+> "previously ... lines physical length is longer than Now ... either rmneove that time and atttendance or make the 'now' ones a little longer"
+> "Senior Software Engineering Student at. Western Univertrst.y ... fully npurple one with a W"
+> "rippling ... either get a. screen recording ... or make yours better seemsw like place holder"
+> "BMO ... logo ist terrible, jsut add the bmo capital markets"
+> "Also add rbc capital markets in the previouisly. place too."
+> "Former academy level soccer player in Ontario is good ... remove the em dash."
+> "Onttario engineering comeption i can give you pics ... rbc desing thinking ... one mroe experience to make therm all even"
+> "stocks Im wathcing ... api ... palantnrir, tesla, nvidia, and google ... top 2-3 big names that had big news or big change that week"
+> "balckacjck ... glad you found me ... keep ... take it easy, its just for fun no stakes :)"
+> "show the score live ... cards coming in ... most crecent card the biggest ... person on the other side ... silhouette"
+> "sign to play balckajck bigger ... colourt changes ... number is so small"
+> "dealer ... animations ... one by one ... make me laugh when i win ... nonchaltn when i lose ... 'good work' 'great hand' 'cheers'"
+> "Info or question marke ... click to open a little side instruction"
+> "dont add arrowsa. western is london, ripp;ling is new york, rbc bmo is toronto though. aker isd new york."
 
-Aker uses actual screenshots of its public product preview in a looping crossfade. This is an animated screenshot walkthrough, not a screen recording. The panel distinguishes the company product from Ayaan's resume-based contribution and includes the three requested skill cards. Rippling uses an original illustrative schedule sequence (week selection, new shift, publish), not an official product recording. The pause button and system reduced-motion preference affect both.
+Delivered:
+- High-resolution 96px portrait delivery with recentered crop; bright LinkedIn, GitHub and mail buttons (answers: "not centerrde ... looks piixaleted"; "should be lit up").
+- Full-page subtle contours and brand-color links with logo-to-external-arrow transitions on hover/focus; plain location labels (answers: "dont cover the whole p[age"; "company main coulour"; "logo to an ararow"; "dont add arrowsa" location follow-up).
+- Exact revised NOW/PREVIOUSLY copy, RBC inclusion, removed degree line and em dashes, confirmed location labels (answers: "Rermove bachelor"; "Senior Software Engineering Student"; "rmneove that time and atttendance"; "add rbc capital markets"; "remove the em dash"; location follow-up).
+- Aker official mark, actual public product captures in a looping crossfade, Fall 2026 label, resume-based one-line contribution and Python / Harness engineering / RAG cards. The short source credit identifies company product media. This is an animated screenshot walkthrough, **not a literal screen recording** (answers: "go through their main page ... try to do one scrfeen record"; "Fall 2026 ... one line intro ... 3 cards").
+- Rippling's original illustrative sequence now selects a week, creates a shift and publishes. Official Western W, owner-supplied BMO mark and clean RBC lettermark replace weak icons. Nine existing cards remain, with a centered final card (answers: "make yours better"; "purple one with a W"; "logo ist terrible"; experience-photo request pending owner inputs).
+- Public TradingView widget displays PLTR, TSLA, NVDA and GOOGL, with USD/source/delay attribution, provider quote times, loading/fallback states and source links. No invented prices, news, client keys, accounts or paid service. Automatic weekly selection of 2–3 additional large caps is **not connected**; the chart initially shows one month, without claiming weekly ranking (answers, partially: "stocks Im wathcing ... palantnrir, tesla, nvidia, and google ... top 2-3").
+- Larger colorful blackjack invitation; requested greeting/no-stakes copy; sequential initial/dealer deals; live visible totals; slightly larger newest card; neutral silhouette; win/lose quips; readable session stats; toggled compact instructions; guarded controls, timer cleanup and native-dialog keyboard/focus behavior. Reduced motion and global pause are honored (answers: "glad you found me"; "show the score live"; "most crecent card the biggest"; "silhouette"; "sign ... bigger"; "one by one"; "good work ... cheers"; "Info or question marke").
 
-Blackjack has staged initial and dealer deals, synchronized visible totals, guarded controls, neutral silhouette, session statistics, optional instructions, keyboard-accessible native dialog, Escape close and focus restoration, and timer cleanup. It has no monetary stakes.
+Not asked, suggested:
+- None.
 
-The stock section embeds the public TradingView widget with PLTR, TSLA, NVDA, GOOGL, USD/source/delay attribution, provider timestamps, loading/failure states, and individual source links. Exact automatic weekly selection of 2–3 additional large caps and custom news aggregation remain **not connected**, pending a provider that permits public display. No invented quotes, placeholder prices, client API keys, or paid accounts. The widget is third-party content and can be unavailable behind network/content restrictions. The initial chart range is one month; weekly ranking is not claimed.
+Open questions for the owner:
+- Which suitable provider permits public display of a custom feed for the requested automatic weekly 2–3 additions/news? No provider account or key has been chosen; this part is not connected.
+- The additional tenth experience, OEC/design photos and any dealer portrait remain to be supplied. The third RBC, Canam, OEC and Design Thinking details retain preexisting labels/illustrations; missing dates and accomplishments have not been invented.
+- A literal Aker recording was not available; actual public captures provide the current animated walkthrough. No recording is claimed.
+
+Independent scope verdict is pending review of the final revision; this worker does not self-approve it.
 
 ## Factual and asset sources
 
