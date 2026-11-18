@@ -90,7 +90,7 @@ export default function Blackjack() {
   const playerCards = round?.player.slice(0, frame?.playerCount ?? 0) ?? [];
   const dealerCards = round?.dealer.slice(0, frame?.dealerCount ?? 0) ?? [];
   const dealerVisible = frame?.reveal ? dealerCards : dealerCards.slice(0, 1);
-  const quip = finished ? round?.outcome === 'win' ? ['Good work.', 'Great hand.', 'Cheers.'][stats.win % 3] : round?.outcome === 'loss' ? 'Ah well. Another hand?' : 'Great minds. Same total.' : busy ? 'One card at a time.' : 'The next move is yours.';
+  const quip = finished ? round?.outcome === 'win' ? ['You came for the portfolio. Stayed to humble me.', 'Okay, card shark.'][Math.max(0, stats.win - 1) % 2] : round?.outcome === 'loss' ? ['Good work. Run it back?', 'Great hand.', 'Cheers. Another round?'][Math.max(0, stats.loss - 1) % 3] : 'Great minds. Same total.' : busy ? 'One card at a time.' : 'The next move is yours.';
   return <>
     <button type="button" className="blackjack-launch" ref={trigger} onClick={() => { setOpen(true); dialog.current?.showModal(); newRound(); }} aria-haspopup="dialog"><span className="launch-cards" aria-hidden="true"><i>♥</i><i>♠</i></span><span><strong>Glad you found me</strong><small>Stay for a hand of blackjack?</small></span><span className="launch-arrow" aria-hidden="true">↗</span></button>
     <dialog className="blackjack-dialog" ref={dialog} onClose={close} aria-labelledby="blackjack-title" aria-describedby="blackjack-note">
