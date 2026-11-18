@@ -1,111 +1,25 @@
-'use client'
-
-import React from 'react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import SocialLinks from '@/components/SocialLinks'
-import Link from 'next/link'
-import PlayExploreCard from '@/components/PlayExploreCard'
+import Image from 'next/image';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FiMail, FiArrowUpRight } from 'react-icons/fi';
+import { work } from '@/content/portfolio';
+import WorkCard from '@/components/portfolio/WorkCard';
+import Blackjack from '@/components/portfolio/Blackjack';
+import VisitorCount from '@/components/portfolio/VisitorCount';
+import MotionToggle from '@/components/portfolio/MotionToggle';
 
 export default function Home() {
-  const [blackjackUnlocked, setBlackjackUnlocked] = React.useState(false)
-
-  return (
-    <>
-      <Header />
-
-      <h1 className="text-[3.0rem] font-serif tracking-tight text-primary">
-        Ayaan Munshi
-      </h1>
-
-      <div className="flex items-center gap-1.5 font-medium tracking-tight">
-        <h2 className="text-lg text-foreground">engineer</h2>
-        <span className="text-foreground/50">•</span>
-        <h2 className="text-lg text-foreground">student</h2>
-        <span className="text-foreground/50">•</span>
-        <h2 className="text-lg text-foreground">mustang</h2>
-      </div>
-
-      <p className="pt-4 text-base text-foreground leading-relaxed">
-        Hi, I’m Ayaan, an engineering student fascinated by how
-        <span className="hover-accent"> markets </span> shape systems, how
-        <span className="hover-accent"> incentives </span> drive behaviour, and how
-        <span className="hover-accent"> technology </span> amplifies them both.
-        <br /><br />
-        I’ve built and shipped software across many different industries,
-        totalling <span className="hover-accent">2 years</span> of internship
-        experience before my senior year.
-
-      </p>
-
-      {/* FOCUS */}
-      <section className="pt-8">
-        <h2 className="font-medium tracking-tight text-foreground">Focus</h2>
-
-        <div className="pt-3 flex flex-wrap gap-2">
-          {[
-            'Software Engineering',
-            'Applied AI Engineering',
-            'Big Data',
-            'Quantitative Analysis',
-            'Financial Markets',
-          ].map(area => (
-            <span
-              key={area}
-              className="focus-pill rounded-full border border-white/10 px-3 py-1 text-xs text-foreground/80"
-            >
-              {area}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      {/* EXPLORE */}
-      <section className="pt-10">
-        <h2 className="font-medium tracking-tight text-foreground">Explore</h2>
-
-        <div className="pt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-          {[
-            { href: '/experiences', title: 'Experiences', desc: 'Roles, teams, and tech I’ve worked on.' },
-            { href: '/thoughts', title: 'Writing', desc: 'Notes on markets, systems, and poker.' },
-            { href: '/places', title: 'Places', desc: 'The cities that shaped me.' },
-          ].map(({ href, title, desc }) => (
-            <Link
-              key={href}
-              href={href}
-              className="
-                group explore-link rounded-xl
-                border border-white/10
-                px-4 py-2.5
-                transition-all duration-200
-                hover:border-[var(--explore-hover-border)]
-                hover:bg-[var(--explore-hover-surface)]
-              "
-            >
-              <div className="flex items-start justify-between gap-3 h-full">
-                <div>
-                  <p className="text-base font-medium tracking-tight text-foreground group-hover:text-primary">
-                    {title}
-                  </p>
-                  <p className="pt-0.5 text-sm text-foreground/75 leading-snug">
-                    {desc}
-                  </p>
-                </div>
-
-                <span className="explore-arrow text-base text-foreground/70">→</span>
-              </div>
-            </Link>
-          ))}
-
-          <PlayExploreCard unlocked={blackjackUnlocked} />
-        </div>
-      </section>
-
-      {/* back to normal */}
-      <SocialLinks />
-
-      {/* easter egg lives here (good job if you checked the codebase lol)*/}
-      <Footer onUnlockBlackjack={() => setBlackjackUnlocked(true)} />
-    </>
-  )
+  return <>
+    <a className="skip-link" href="#engineering">Skip to engineering</a>
+    <div className="contour-background" aria-hidden="true"><svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMin slice">{Array.from({length:15},(_,i)=><path key={i} d={`M${-240+i*38} -100 C${480+i*31} ${20+i*8}, ${-80+i*32} ${260+i*12}, ${860+i*27} ${540+i*13}`} />)}</svg></div>
+    <main className="portfolio">
+      <header className="profile-header">
+        <Image className="portrait" src="/photos/headshot.jpg" width={80} height={80} priority alt="Ayaan Munshi" />
+        <div><h1>Ayaan Munshi</h1><p className="profile-role">Software Engineer</p><nav className="profile-socials" aria-label="Social links"><a href="https://www.linkedin.com/in/ayaan-munshi/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><FaLinkedin/></a><a href="https://github.com/ayaancodes" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)"><FaGithub/></a><a href="mailto:ayaanmunshi456@gmail.com" aria-label="Email Ayaan"><FiMail/></a></nav></div>
+      </header>
+      <section className="life-section" aria-labelledby="now-title"><h2 id="now-title">Now</h2><ul><li><span className="life-arrow">↳</span><span>Applied AI Engineer at <span className="inline-company">Aker AI</span></span></li><li><span className="life-arrow">↳</span><span>Software Engineering at <a href="https://www.uwo.ca/" target="_blank" rel="noopener noreferrer">Western University</a><span className="degree">Bachelor of Engineering Sciences</span></span></li></ul></section>
+      <section className="life-section previously" aria-labelledby="previous-title"><h2 id="previous-title">Previously</h2><ul><li><span className="life-arrow">↳</span><span>Software Engineer at <a href="https://www.rippling.com/" target="_blank" rel="noopener noreferrer">Rippling</a> <span className="team">— Time &amp; Attendance</span></span></li><li><span className="life-arrow">↳</span><span>Quantitative Trading at <a href="https://capitalmarkets.bmo.com/" target="_blank" rel="noopener noreferrer">BMO Capital Markets</a> <span className="team">— ETF Market Making</span></span></li><li><span className="life-arrow">↳</span><span>Former academy-level soccer player in Ontario</span></li></ul></section>
+      <section className="engineering-section" id="engineering" aria-labelledby="engineering-title"><div className="section-heading"><div><h2 id="engineering-title">Engineering</h2><p>A few places I’ve built, learned, and contributed.</p></div><MotionToggle/></div><div className="work-grid">{work.map(item=><WorkCard key={item.id} work={item}/>)}</div></section>
+      <footer className="portfolio-footer"><div className="footer-invitation"><p>Want to build something together or just want to say hi?</p><a className="chat-link" href="mailto:ayaanmunshi456@gmail.com">Let’s chat <FiArrowUpRight/></a><a className="footer-email" href="mailto:ayaanmunshi456@gmail.com">ayaanmunshi456@gmail.com</a></div><div className="footer-bottom"><Blackjack/><VisitorCount/><span>© {new Date().getFullYear()} Ayaan Munshi</span></div></footer>
+    </main>
+  </>;
 }

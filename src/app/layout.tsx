@@ -8,18 +8,18 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ??
   (process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000");
+    : "https://ayaanmunshi.vercel.app");
 
 const DESCRIPTION =
-  "Software engineering student interested in building systems that connect technology, markets, and people.";
+  "Ayaan Munshi is a software engineer studying at Western University, with experience in applied AI, product engineering, and capital markets.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Ayaan Munshi",
+  title: "Ayaan Munshi — Software Engineer",
   description: DESCRIPTION,
   icons: { icon: "/favicon.svg" },
   openGraph: {
-    title: "Ayaan Munshi",
+    title: "Ayaan Munshi — Software Engineer",
     description: DESCRIPTION,
     url: "/",
     siteName: "Ayaan Munshi",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ayaan Munshi",
+    title: "Ayaan Munshi — Software Engineer",
     description: DESCRIPTION,
     images: ["/og.png"],
   },

@@ -1,0 +1,35 @@
+import type { Work } from '@/content/portfolio';
+
+const bars = [26, 40, 32, 59, 44, 67, 61, 83, 73, 94, 78, 100];
+
+export default function WorkPreview({ work }: { work: Work }) {
+  return (
+    <div className={`work-preview preview-${work.scene}`} role="img" aria-label={`Illustration, not shipped product UI. ${work.illustration}`}>
+      <div className="scene" aria-hidden="true">
+        {work.scene === 'agent' && <>
+          <div className="agent-orbit orbit-one" /><div className="agent-orbit orbit-two" />
+          <div className="agent-window">
+            <div className="mini-toolbar"><span className="agent-symbol">✳</span><strong>Workspace</strong><span className="mini-dots">···</span></div>
+            <div className="agent-message">Make room for your next idea.</div>
+            <div className="agent-answer"><span className="agent-spark">✳</span><div><strong>Let’s put the pieces together.</strong><span className="skeleton long"/><span className="skeleton short"/></div></div>
+            <div className="context-chips"><span>◎ Context</span><span>↗ Explore</span><span>✓ Create</span></div>
+            <div className="agent-input"><span>Ask anything</span><span>↑</span></div>
+          </div>
+          <div className="floating-note"><span>✦</span> A little less busywork.</div>
+        </>}
+        {work.scene === 'schedule' && <div className="schedule-window">
+          <aside className="schedule-sidebar"><b>R</b><i/><i/><i/><i/><i/></aside>
+          <div className="schedule-main"><div className="mini-toolbar"><strong>Team schedule</strong><span className="mini-dots">···</span></div><div className="schedule-controls"><span>‹ &nbsp; This week &nbsp; ›</span><span className="publish">Publish</span></div><div className="schedule-grid"><div className="day-labels"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span></div>{['AM', 'PM', 'EVE'].map((x, i) => <div className="shift-row" key={x}><span>{x}</span>{Array.from({length: 5}, (_, j) => <div className={`shift-cell shift-${(i+j)%4}`} key={j}>{(i+j)%4 !== 3 && <i style={{animationDelay: `${(i+j)*.3}s`}}><b>{['Design', 'Support', 'Operations'][(i+j)%3]}</b><small>9:00 — 5:00</small></i>}</div>)}</div>)}</div></div>
+        </div>}
+        {work.scene === 'market' && <div className="market-window"><div className="market-top"><strong>Market overview</strong><span><i/> LIVE DEMO</span></div><div className="market-ticker"><span>ETF / SAMPLE</span><b>104.82</b><em>+1.24%</em></div><svg className="price-chart" viewBox="0 0 360 115"><defs><linearGradient id="chart-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#68c6cb" stopOpacity=".22"/><stop offset="1" stopColor="#68c6cb" stopOpacity="0"/></linearGradient></defs><path d="M0 99 L25 89 L43 96 L61 65 L79 76 L96 50 L116 62 L138 43 L153 54 L174 30 L197 41 L222 21 L243 33 L263 15 L286 25 L310 10 L335 17 L360 4 L360 115 L0 115 Z" fill="url(#chart-fill)"/><path className="chart-line" d="M0 99 L25 89 L43 96 L61 65 L79 76 L96 50 L116 62 L138 43 L153 54 L174 30 L197 41 L222 21 L243 33 L263 15 L286 25 L310 10 L335 17 L360 4" fill="none" stroke="#8dd9dc" strokeWidth="2"/></svg><div className="order-book"><span>BID <b>104.81</b></span><span>ASK <b>104.83</b></span><span>SPREAD <b>0.02</b></span></div></div>}
+        {work.scene === 'data' && <div className="data-scene"><div className="data-label">CONNECTED SYSTEMS</div><svg viewBox="0 0 440 240"><g fill="none" stroke="#7196c6" strokeOpacity=".4"><path d="M220 120 L80 50 M220 120 L360 50 M220 120 L80 190 M220 120 L360 190 M220 120 L220 28 M220 120 L220 212"/></g><g className="data-pulses" fill="#aad0ff"><circle cx="150" cy="85" r="3"/><circle cx="290" cy="155" r="3"/><circle cx="220" cy="70" r="3"/></g></svg><div className="database"><span>▱</span><strong>Data layer</strong><small>One connected view</small></div>{['API', 'Query', 'Events', 'Apps'].map((x,i) => <div className={`data-node node-${i}`} key={x}><span>▧</span>{x}</div>)}</div>}
+        {work.scene === 'workflow' && <div className="workflow-scene"><div className="workflow-title"><span>✦</span> Thoughtfully connected.</div><div className="flow-wire"/>{[['01','Understand','A clear starting point'],['02','Review','Keep a human in the loop'],['03','Resolve','Move the work forward']].map(([num,title,desc],i) => <div className={`flow-card flow-${i}`} key={num}><small>{num}<span>✓</span></small><b>{title}</b><p>{desc}</p></div>)}<div className="workflow-bottom"><i/> Concept workflow</div></div>}
+        {work.scene === 'risk' && <div className="report-window"><div className="mini-toolbar"><strong>Portfolio overview</strong><span>↗</span></div><div className="report-tabs"><b>Overview</b><span>Exposure</span><span>Reports</span></div><div className="report-metrics"><div><small>Sample portfolio</small><b>Balanced</b></div><div><small>Report status</small><b className="report-ready">Ready <i/></b></div></div><div className="report-chart">{bars.map((height,i)=><span key={i} style={{height:`${height}%`, animationDelay:`${i*.07}s`}}/>)}</div><div className="report-axis"><span>JAN</span><span>JUN</span><span>DEC</span></div></div>}
+        {work.scene === 'structure' && <div className="structure-scene"><div className="blueprint-label">STRUCTURE / STUDY 01</div><svg viewBox="0 0 440 260"><g fill="none" stroke="#a2b6c3" strokeWidth="1.3"><path d="M75 195 L75 80 L220 30 L365 80 L365 195 L220 245 Z M75 80 L220 135 L365 80 M220 135 L220 245 M75 195 L220 135 L365 195 M75 80 L365 195 M365 80 L75 195 M148 55 L148 221 M292 55 L292 221 M75 137 L220 190 L365 137"/><path className="build-line" d="M75 195 L75 80 L220 30 L365 80 L365 195 L220 245 Z" stroke="#e3e8ed" strokeWidth="2"/></g><g fill="#dce7ec"><circle cx="75" cy="80" r="3"/><circle cx="220" cy="135" r="3"/><circle cx="365" cy="80" r="3"/></g></svg><span className="blueprint-scale">FORM · FUNCTION · DETAIL</span></div>}
+        {work.scene === 'engineering' && <div className="engineering-scene"><div className="engineering-label">A challenge. A blank page.<br/><strong>A better way forward.</strong></div><div className="mechanism"><div className="gear gear-one">✳</div><div className="gear gear-two">✳</div><div className="gear-axis"/><span className="measure-line">01 / EXPLORE</span></div><div className="sketch-note">↗ build · test · iterate</div></div>}
+        {work.scene === 'design' && <div className="design-scene"><div className="sticky sticky-one"><small>01 / LISTEN</small><b>Start with<br/>the person.</b><span>↗</span></div><div className="sticky sticky-two"><small>02 / EXPLORE</small><div className="idea-doodle">✳</div></div><div className="prototype"><div className="prototype-nav"><i/><span/><b>•••</b></div><div className="prototype-hero"/><div className="prototype-lines"><i/><i/></div><div className="prototype-tiles"><i/><i/><i/></div><div className="prototype-button"/></div><div className="design-caption">Small ideas. Considered details.</div></div>}
+      </div>
+      <span className="illustration-label">Illustration</span>
+    </div>
+  );
+}
