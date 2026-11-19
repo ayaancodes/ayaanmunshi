@@ -380,3 +380,6 @@ button.chat-link{border:0;background:none;padding:0;cursor:pointer}.contact-dial
 @media(max-width:360px){.game-wallet{padding:11px 12px}.game-wallet b{font-size:22px}.game-replenish{align-items:flex-start;flex-direction:column}}
 .footer-topline{display:flex;justify-content:space-between;align-items:center;gap:32px}.city-clocks{display:flex;align-items:baseline;flex-wrap:wrap;gap:7px;max-width:100%;color:#a3a3a3;font:14px/1.6 Georgia,serif}.city-clock{white-space:nowrap}.city-clock time{font-variant-numeric:tabular-nums}.clock-divider{color:#777}
 @media(max-width:580px){.footer-topline{align-items:flex-start;flex-direction:column;gap:20px}.city-clocks{font-size:13px}}
+
+/* Full-bleed trading reference; source context lives in the experience dialog. */
+.walkthrough-trading .product-screen{inset:0;border:0;border-radius:0;box-shadow:none;background:#0e1011}.walkthrough-trading .product-slide img{object-position:50% 50%;animation:none}.public-video-still .public-video-title,.public-video-still .video-duration{display:none}
