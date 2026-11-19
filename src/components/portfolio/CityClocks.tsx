@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { cityTime, CLOCK_CITIES } from '@/lib/city-clocks';
 
 export default function CityClocks() {
@@ -19,8 +19,8 @@ export default function CityClocks() {
     document.addEventListener('visibilitychange', synchronize);
     return () => { if (timer) clearInterval(timer); observer.disconnect(); document.removeEventListener('visibilitychange', synchronize); };
   }, []);
-  return <div ref={host} className="city-clocks" aria-label="Local time in Toronto and New York">{CLOCK_CITIES.map(city => {
+  return <div ref={host} className="city-clocks" aria-label="Local time in Toronto and New York">{CLOCK_CITIES.map((city, index) => {
     const clock = now ? cityTime(now, city.zone) : { time: '--:--:--', zone: 'ET' };
-    return <div className="city-monitor" key={city.name}><div><span>{city.name}</span><small>{clock.zone}</small></div><time dateTime={now?.toISOString()} aria-label={`${city.name}: ${clock.time} ${clock.zone}`}>{clock.time}</time><span className="monitor-label"><i aria-hidden="true"/> LOCAL TIME</span></div>;
+    return <Fragment key={city.name}>{index > 0 && <span className="clock-divider" aria-hidden="true">·</span>}<span className="city-clock">{city.name} <time dateTime={now?.toISOString()} aria-label={`${city.name}: ${clock.time} ${clock.zone}`}>{clock.time}</time></span></Fragment>;
   })}</div>;
 }
