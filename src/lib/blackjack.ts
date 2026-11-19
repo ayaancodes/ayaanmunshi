@@ -66,3 +66,45 @@ export function hit(round: Round): Round {
   const next = hitStep(round);
   return next.phase === 'dealer' ? stand(next) : next;
 }
+
+// Play money only. Integer cents make the 3:2 natural payout exact.
+export const STARTING_BALANCE = 2000;
+export const HAND_STAKE = 100;
+export type GameSession = {
+  balance: number;
+  handId: number;
+  settledHandId: number;
+  round: Round | null;
+  stats: Record<Outcome, number>;
+};
+export function createSession(): GameSession {
+  return { balance: STARTING_BALANCE, handId: 0, settledHandId: 0, round: null, stats: { win: 0, loss: 0, push: 0 } };
+}
+export function beginHand(session: GameSession, deck?: Card[]): GameSession {
+  if (session.balance < HAND_STAKE || session.handId !== session.settledHandId) return session;
+  return { ...session, balance: session.balance - HAND_STAKE, handId: session.handId + 1, round: deal(deck) };
+}
+export function recordHand(session: GameSession, round: Round, handId: number): GameSession {
+  if (handId !== session.handId || session.settledHandId === handId) return session;
+  return { ...session, round };
+}
+export function handReturn(round: Round): number {
+  if (round.phase !== 'finished' || !round.outcome) return 0;
+  if (round.outcome === 'push') return HAND_STAKE;
+  if (round.outcome === 'loss') return 0;
+  const natural = round.player.length === 2 && score(round.player) === 21;
+  return natural ? HAND_STAKE * 2.5 : HAND_STAKE * 2;
+}
+export function settleHand(session: GameSession, handId: number): GameSession {
+  const round = session.round;
+  if (handId !== session.handId || session.settledHandId === handId || round?.phase !== 'finished' || !round.outcome) return session;
+  return { ...session, balance: session.balance + handReturn(round), settledHandId: handId, stats: { ...session.stats, [round.outcome]: session.stats[round.outcome] + 1 } };
+}
+/** Closing resolves a completed animation queue, or preserves the unfinished hand and stake. */
+export function suspendHand(session: GameSession): GameSession {
+  return settleHand(session, session.handId);
+}
+export function resetBankroll(session: GameSession): GameSession {
+  if (session.handId !== session.settledHandId || session.balance >= HAND_STAKE) return session;
+  return { ...session, balance: STARTING_BALANCE, round: null };
+}

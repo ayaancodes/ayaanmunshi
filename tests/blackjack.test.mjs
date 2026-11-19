@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { score, deal, hit, stand, shuffledDeck, beginDealer, dealerStep, hitStep } from '../src/lib/blackjack.ts';
+import { score, deal, hit, stand, shuffledDeck, beginDealer, dealerStep, hitStep, createSession, beginHand, recordHand, settleHand, suspendHand, resetBankroll, handReturn } from '../src/lib/blackjack.ts';
 
 const card = (rank, suit = '♠') => ({ rank: String(rank), suit });
 const hand = (...ranks) => ranks.map(rank => card(rank));
@@ -95,4 +95,82 @@ test('outcomes identify naturals, busts and pushes without matching result copy'
   assert.equal(deal(hand('9','A','7','K')).outcome, 'loss');
   assert.equal(hitStep(round(['K','8'],['9','7'],['5'])).outcome, 'loss');
   assert.equal(stand(round(['K','8'],['K','8'],['2'])).outcome, 'push');
+});
+
+test('a $1 stake is charged once and an unresolved hand cannot be replaced', () => {
+  const initial = createSession();
+  const started = beginHand(initial, hand('9','8','7','9'));
+  assert.equal(initial.balance, 2000);
+  assert.equal(started.balance, 1900);
+  assert.equal(beginHand(started, hand('A','9','K','7')), started);
+  assert.equal(settleHand(started, started.handId), started);
+});
+test('natural blackjack returns stake plus $1.50 net, while both naturals push', () => {
+  const natural = beginHand(createSession(), hand('A','9','K','7'));
+  assert.equal(handReturn(natural.round), 250);
+  const paid = settleHand(natural, natural.handId);
+  assert.equal(paid.balance, 2150);
+  assert.equal(paid.stats.win, 1);
+  const both = beginHand(createSession(), hand('A','A','K','Q'));
+  assert.equal(settleHand(both, both.handId).balance, 2000);
+});
+test('dealer natural loses only the stake; ordinary wins return $2 and pushes return $1', () => {
+  const dealer = beginHand(createSession(), hand('9','A','7','K'));
+  assert.equal(settleHand(dealer, dealer.handId).balance, 1900);
+  const win = beginHand(createSession(), hand('K','9','9','8'));
+  const result = recordHand(win, stand(win.round), win.handId);
+  assert.equal(settleHand(result, result.handId).balance, 2100);
+  const push = beginHand(createSession(), hand('K','Q','8','8'));
+  const matched = recordHand(push, stand(push.round), push.handId);
+  assert.equal(settleHand(matched, matched.handId).balance, 2000);
+});
+test('a three-card 21 receives an ordinary payout, never 3:2', () => {
+  const started = beginHand(createSession(), hand('7','K','4','7','K'));
+  const played = recordHand(started, hit(started.round), started.handId);
+  assert.equal(handReturn(played.round), 200);
+  assert.equal(settleHand(played, played.handId).balance, 2100);
+});
+test('settlement is idempotent and a stale hand cannot pay or overwrite a new hand', () => {
+  const natural = beginHand(createSession(), hand('A','9','K','7'));
+  const paid = settleHand(natural, natural.handId);
+  assert.equal(settleHand(paid, paid.handId), paid);
+  const next = beginHand(paid, hand('9','8','7','9'));
+  assert.equal(settleHand(next, paid.handId), next);
+  assert.equal(recordHand(next, paid.round, paid.handId), next);
+  assert.equal(next.balance, 2050);
+  assert.deepEqual(next.stats, { win: 1, loss: 0, push: 0 });
+});
+test('closing during a deal preserves the same hand and wager; reopening cannot charge again', () => {
+  const active = beginHand(createSession(), hand('9','8','7','9'));
+  const closed = suspendHand(active);
+  assert.equal(closed, active);
+  assert.equal(beginHand(closed), closed);
+  assert.equal(closed.balance, 1900);
+  assert.equal(closed.round, active.round);
+});
+test('closing during natural or dealer settlement pays once even if a queued callback repeats', () => {
+  const natural = beginHand(createSession(), hand('A','9','K','7'));
+  const closedNatural = suspendHand(natural);
+  assert.equal(closedNatural.balance, 2150);
+  assert.equal(settleHand(closedNatural, natural.handId), closedNatural);
+  const started = beginHand(createSession(), hand('K','9','9','6','3'));
+  const resolved = recordHand(started, stand(started.round), started.handId);
+  const closed = suspendHand(resolved);
+  assert.equal(closed.balance, 2100);
+  assert.equal(suspendHand(closed), closed);
+  assert.equal(settleHand(closed, resolved.handId), closed);
+});
+test('exhausted play money resets only after settlement and keeps visit statistics', () => {
+  let session = { ...createSession(), balance: 100 };
+  session = beginHand(session, hand('9','A','7','K'));
+  assert.equal(session.balance, 0);
+  assert.equal(resetBankroll(session), session);
+  session = settleHand(session, session.handId);
+  assert.equal(beginHand(session), session);
+  const reset = resetBankroll(session);
+  assert.equal(reset.balance, 2000);
+  assert.equal(reset.round, null);
+  assert.equal(reset.stats.loss, 1);
+  assert.equal(resetBankroll({ ...reset, balance: 50 }).balance, 2000);
+  assert.equal(resetBankroll(reset), reset);
 });
