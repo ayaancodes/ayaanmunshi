@@ -26,7 +26,7 @@ const projects = [
             'Quantitative trading on the Global Markets team.',
         tech: ['Python', 'KDB/Q', 'SQL', 'Excel'],
         link: 'https://capitalmarkets.bmo.com/en/about-us/',
-        image: '/experience/BMOLogo.webp'
+        image: '/experience/bmo-transparent-nov19.png'
     },
     {
         id: 3,
@@ -38,7 +38,7 @@ const projects = [
             'Built out a centralized datastore for a 40+ app ecosystem supporting corporate bankers.',
         tech: ['C#', 'Python', 'SQL', 'Azure', 'React'],
         link: 'https://www.rbccm.com/en/',
-        image: '/experience/rbc-mark-nov19.png'
+        image: '/experience/rbc-transparent-nov19.png'
 
     },
     {
@@ -51,7 +51,7 @@ const projects = [
             'Developed a patent-pending agentic system optimizing transaction workflows.',
         tech: ['Python', 'LangChain', 'FastAPI', 'PostgreSQL', 'Redis'],
         link: 'https://www.rbccm.com/en/',
-        image: '/experience/rbc-mark-nov19.png'
+        image: '/experience/rbc-transparent-nov19.png'
     },
     {
         id: 5,
@@ -63,7 +63,7 @@ const projects = [
             'Developed an web service automating delivery of real-time risk analytics',
         tech: ['JavaScript', 'Exchange Web Services', 'Redis', 'Express'],
         link: 'https://www.rbccm.com/en/',
-        image: '/experience/rbc-mark-nov19.png'
+        image: '/experience/rbc-transparent-nov19.png'
     },
     {
         id: 6,
@@ -88,7 +88,7 @@ const projects = [
             'Engineered a live telemetry-driven shipment tracker optimizing delivery efficiency ',
         tech: ['C#', 'SQL', 'Azure', 'Grafana'],
         link: 'https://www.canam.com/en/',
-        image: '/experience/Canam.jpg'
+        image: '/experience/canam-transparent-nov19.png'
     }
 ]
 
