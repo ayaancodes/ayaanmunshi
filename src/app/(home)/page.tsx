@@ -14,14 +14,16 @@ import SoccerMoment from '@/components/portfolio/SoccerMoment';
 import Writings from '@/components/portfolio/Writings';
 import Contact, { ContactProvider } from '@/components/portfolio/Contact';
 import CityClocks from '@/components/portfolio/CityClocks';
+import ScrollReveal from '@/components/portfolio/ScrollReveal';
 
 export default function Home() {
   return <>
     <a className="skip-link" href="#engineering">Skip to engineering</a>
     <PixelBackground/>
+    <ScrollReveal/>
     <ContactProvider><main className="portfolio">
       <header className="profile-header">
-        <div className="portrait-frame"><Image className="portrait" src="/photos/presenting-headshot-nov19.jpg" width={1280} height={1920} sizes="(max-width: 360px) 92px, (max-width: 580px) 110px, 146px" quality={95} preload alt="Ayaan Munshi presenting" /></div>
+        <div className="portrait-frame"><Image className="portrait" src="/photos/presenting-headshot-nov19.jpg" width={1280} height={1920} sizes="(max-width: 360px) 92px, (max-width: 580px) 110px, 164px" quality={95} preload alt="Ayaan Munshi presenting" /></div>
         <div className="profile-copy"><Image className="profile-monogram" src="/brand/am-shared-stem.svg" alt="" width={38} height={26} aria-hidden="true"/><h1>Ayaan Munshi</h1><p className="profile-role">Software Engineer</p><nav className="profile-socials" aria-label="Social links"><a className="social-linkedin" href="https://www.linkedin.com/in/ayaan-munshi/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><FaLinkedin/></a><a className="social-github" href="https://github.com/ayaancodes" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)"><FaGithub/></a><a className="social-mail" href="mailto:ayaanmunshi456@gmail.com" aria-label="Email Ayaan"><FiMail/></a></nav></div>
       </header>
       <section className="life-section" aria-labelledby="now-title"><h2 id="now-title">Now</h2><ul><li><span className="life-arrow">↳</span><span>Applied AI Engineer at <BrandLink name="Aker AI" href="https://aker-ai.com/" logo="/experience/aker-mark-nov19.png" brand="aker"/><City>New York</City></span></li><li><span className="life-arrow">↳</span><span>Senior Software Engineering Student at <BrandLink name="Western University" href="https://www.uwo.ca/" logo="/experience/western-transparent-nov19.png" brand="western"/><City>London</City></span></li></ul></section>
