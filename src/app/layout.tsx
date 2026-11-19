@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: "/",
     siteName: "Ayaan Munshi",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Ayaan Munshi" }],
+    images: [{ url: "/social/ayaan-munshi-nov19.png", width: 1200, height: 630, alt: "Ayaan Munshi" }],
     locale: "en_CA",
     type: "website",
   },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ayaan Munshi — Software Engineer",
     description: DESCRIPTION,
-    images: ["/og.png"],
+    images: ["/social/ayaan-munshi-nov19.png"],
   },
 };
 
