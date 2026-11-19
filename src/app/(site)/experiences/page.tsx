@@ -38,7 +38,7 @@ const projects = [
             'Built out a centralized datastore for a 40+ app ecosystem supporting corporate bankers.',
         tech: ['C#', 'Python', 'SQL', 'Azure', 'React'],
         link: 'https://www.rbccm.com/en/',
-        image: '/experience/RBCLogo.jpg'
+        image: '/experience/rbc-mark-nov19.png'
 
     },
     {
@@ -51,7 +51,7 @@ const projects = [
             'Developed a patent-pending agentic system optimizing transaction workflows.',
         tech: ['Python', 'LangChain', 'FastAPI', 'PostgreSQL', 'Redis'],
         link: 'https://www.rbccm.com/en/',
-        image: '/experience/RBCLogo.jpg'
+        image: '/experience/rbc-mark-nov19.png'
     },
     {
         id: 5,
@@ -63,7 +63,7 @@ const projects = [
             'Developed an web service automating delivery of real-time risk analytics',
         tech: ['JavaScript', 'Exchange Web Services', 'Redis', 'Express'],
         link: 'https://www.rbccm.com/en/',
-        image: '/experience/RBCLogo.jpg'
+        image: '/experience/rbc-mark-nov19.png'
     },
     {
         id: 6,
