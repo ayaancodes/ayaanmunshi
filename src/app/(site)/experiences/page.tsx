@@ -80,13 +80,13 @@ const projects = [
     },
     {
         id: 7,
-        title: 'Canam Group',
-        role: 'Engineering Intern',
+        title: 'Canam Manufacturing Group',
+        role: 'Lean Engineering Student',
         date: 'May 2023 - August 2023',
-        location: 'Mississauga, Canada',
+        location: 'Toronto, Canada',
         description:
-            'Engineered a live telemetry-driven shipment tracker optimizing delivery efficiency ',
-        tech: ['C#', 'SQL', 'Azure', 'Grafana'],
+            'Improved lean manufacturing processes and built a 3D shipment-yard tracker.',
+        tech: ['C#', 'Blender 3D', 'KAIZEN', '3P', '5S'],
         link: 'https://www.canam.com/en/',
         image: '/experience/canam-transparent-nov19.png'
     }
