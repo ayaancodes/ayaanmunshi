@@ -31,7 +31,7 @@ const projects = [
     {
         id: 3,
         title: 'RBC Capital Markets ',
-        role: 'Quantitative Developer Intern - Quantitative Technology Services Team',
+        role: 'Quantitative Developer Intern - Quantitative Technology Team',
         date: 'September 2025 - December 2025',
         location: 'Toronto, Canada',
         description:
