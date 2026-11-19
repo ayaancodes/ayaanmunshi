@@ -9,6 +9,9 @@ const walkthroughs = {
     { image: '/experience/aker-analytics-public.jpg', title: 'Operating analytics', detail: 'Follow the metrics that matter' },
     { image: '/experience/aker-workflow-public.jpg', title: 'Agents & workflows', detail: 'From source data to the next action' },
   ],
+  // Public Wealthsimple trading reference: https://www.wealthsimple.com/en-ca/trade
+  // This screenshot is not BMO product UI or a claim of personal authorship.
+  trading: [{ image: '/experience/wealthsimple-public-trading.webp', title: 'The trading workspace', detail: 'Public platform reference' }],
   rippling: [
     { image: '/experience/rippling-schedule.png', title: 'Build the schedule', detail: 'Find the right people for each shift' },
     { image: '/experience/rippling-insights.png', title: 'Review the details', detail: 'Bring availability and insights together' },
@@ -34,7 +37,7 @@ export default function ProductWalkthrough({ company }: { company: keyof typeof 
   }, [animate, visible, frames.length]);
   const current = frames[active];
   return <div ref={host} className={`product-walkthrough walkthrough-${company} ${animate && visible ? 'walkthrough-playing' : ''}`}>
-    <div className="product-heading"><span>{company === 'aker' ? 'AKER AI' : 'RIPPLING'}</span><span>{company === 'aker' ? 'INVESTMENT WORKSPACE' : 'TIME & SCHEDULING'}</span></div>
+    <div className="product-heading"><span>{company === 'aker' ? 'AKER AI' : company === 'rippling' ? 'RIPPLING' : 'TRADING WORKSPACE'}</span><span>{company === 'aker' ? 'INVESTMENT WORKSPACE' : company === 'rippling' ? 'TIME & SCHEDULING' : 'PUBLIC REFERENCE'}</span></div>
     <div className="product-screen">{frames.map((frame, index) => <div className={`product-slide ${active === index ? 'is-active' : ''}`} key={frame.image}><Image src={frame.image} alt="" fill sizes="(max-width: 580px) 90vw, 650px" quality={95}/></div>)}</div>
     <div className="product-story"><div><strong>{current.title}</strong><span>{current.detail}</span></div><div className="product-steps">{frames.map((frame,index)=><i key={frame.title} className={index === active ? 'is-active' : ''}/>)}</div></div>
   </div>;
