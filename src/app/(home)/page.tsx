@@ -12,13 +12,13 @@ import City from '@/components/portfolio/City';
 import PixelBackground from '@/components/portfolio/PixelBackground';
 import SoccerMoment from '@/components/portfolio/SoccerMoment';
 import Writings from '@/components/portfolio/Writings';
-import Contact from '@/components/portfolio/Contact';
+import Contact, { ContactProvider } from '@/components/portfolio/Contact';
 
 export default function Home() {
   return <>
     <a className="skip-link" href="#engineering">Skip to engineering</a>
     <PixelBackground/>
-    <main className="portfolio">
+    <ContactProvider><main className="portfolio">
       <header className="profile-header">
         <div className="portrait-frame"><Image className="portrait" src="/photos/presenting-headshot-nov19.jpg" width={330} height={495} sizes="330px" quality={95} preload alt="Ayaan Munshi presenting" /></div>
         <div><h1>Ayaan Munshi</h1><p className="profile-role">Software Engineer</p><nav className="profile-socials" aria-label="Social links"><a className="social-linkedin" href="https://www.linkedin.com/in/ayaan-munshi/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><FaLinkedin/></a><a className="social-github" href="https://github.com/ayaancodes" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)"><FaGithub/></a><a className="social-mail" href="mailto:ayaanmunshi456@gmail.com" aria-label="Email Ayaan"><FiMail/></a></nav></div>
@@ -28,7 +28,7 @@ export default function Home() {
       <section className="engineering-section" id="engineering" aria-labelledby="engineering-title"><div className="section-heading"><div><h2 id="engineering-title">Engineering</h2><p>A few places I’ve built, learned, and contributed.</p></div><MotionToggle/></div><div className="work-grid">{work.map(item=><WorkCard key={item.id} work={item}/>)}</div></section>
       <Stocks/>
       <Writings/>
-      <footer className="portfolio-footer"><div className="footer-invitation"><p>Want to build something together or just want to say hi?</p><Contact/><a className="footer-email" href="mailto:ayaanmunshi456@gmail.com">ayaanmunshi456@gmail.com</a></div><Blackjack/><div className="footer-bottom"><VisitorCount/><span>© {new Date().getFullYear()} Ayaan Munshi</span></div></footer>
-    </main>
+      <footer className="portfolio-footer"><div className="footer-invitation"><p>Got something in mind?</p><Contact/></div><Blackjack/><div className="footer-bottom"><VisitorCount/><span>© {new Date().getFullYear()} Ayaan Munshi</span></div></footer>
+    </main></ContactProvider>
   </>;
 }
