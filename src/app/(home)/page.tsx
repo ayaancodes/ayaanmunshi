@@ -13,6 +13,7 @@ import PixelBackground from '@/components/portfolio/PixelBackground';
 import SoccerMoment from '@/components/portfolio/SoccerMoment';
 import Writings from '@/components/portfolio/Writings';
 import Contact, { ContactProvider } from '@/components/portfolio/Contact';
+import CityClocks from '@/components/portfolio/CityClocks';
 
 export default function Home() {
   return <>
@@ -28,7 +29,7 @@ export default function Home() {
       <section className="engineering-section" id="engineering" aria-labelledby="engineering-title"><div className="section-heading"><div><h2 id="engineering-title">Engineering</h2><p>A few places I’ve built, learned, and contributed.</p></div><MotionToggle/></div><div className="work-grid">{work.map(item=><WorkCard key={item.id} work={item}/>)}</div></section>
       <Stocks/>
       <Writings/>
-      <footer className="portfolio-footer"><div className="footer-invitation"><p>Got something in mind?</p><Contact/></div><Blackjack/><div className="footer-bottom"><VisitorCount/><span>© {new Date().getFullYear()} Ayaan Munshi</span></div></footer>
+      <footer className="portfolio-footer"><div className="footer-topline"><div className="footer-invitation"><p>Got something in mind?</p><Contact/></div><CityClocks/></div><Blackjack/><div className="footer-bottom"><VisitorCount/><span>© {new Date().getFullYear()} Ayaan Munshi</span></div></footer>
     </main></ContactProvider>
   </>;
 }
