@@ -178,6 +178,7 @@ body:has(.portfolio-root){background:#161616}
 .profile-socials a:hover{transform:translateY(-2px);filter:brightness(1.15)}
 .profile-socials .social-linkedin{color:#fff;background:#0a66c2}
 .profile-socials .social-github{color:#24292f;background:#f4f4f4}
+.profile-socials .social-x{color:#fff;background:#111}
 .profile-socials .social-mail{color:#fff;background:#bd594d}
 .life-section .brand-link,.brand-link{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-weight:500;text-decoration:none}
 .brand-icon{display:inline-grid;place-items:center;position:relative;width:19px;height:19px;flex:none;vertical-align:middle}

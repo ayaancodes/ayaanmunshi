@@ -11,7 +11,7 @@ const projects = [
         date: 'May 2026 - August 2026',
         location: 'New York, USA',
         description:
-            'Software engineering on the Time Tracking team.',
+            'Built a customer-facing AI Time Products feature with Python and TypeScript.',
         tech: ['Python', 'Django', 'AWS', 'React'],
         link: 'https://www.rippling.com/about',
         image: '/experience/RipplingSkyline.avif'
@@ -23,7 +23,7 @@ const projects = [
         date: 'January 2026 - April 2026',
         location: 'Toronto, Canada',
         description:
-            'Quantitative trading on the Global Markets team.',
+            'Supported ETF market making with Python and KDB/Q.',
         tech: ['Python', 'KDB/Q', 'SQL', 'Excel'],
         link: 'https://capitalmarkets.bmo.com/en/about-us/',
         image: '/experience/bmo-transparent-nov19.png'
@@ -35,7 +35,7 @@ const projects = [
         date: 'September 2025 - December 2025',
         location: 'Toronto, Canada',
         description:
-            'Built out a centralized datastore for a 40+ app ecosystem supporting corporate bankers.',
+            'Built streaming APIs and data checks for capital markets systems.',
         tech: ['C#', 'Python', 'SQL', 'Azure', 'React'],
         link: 'https://www.rbccm.com/en/',
         image: '/experience/rbc-transparent-nov19.png'
@@ -48,35 +48,34 @@ const projects = [
         date: 'May 2025 - August 2025',
         location: 'Toronto, Canada',
         description:
-            'Developed a patent-pending agentic system optimizing transaction workflows.',
+            'Designed multi-agent payment workflows and data schemas for banking services.',
         tech: ['Python', 'LangChain', 'FastAPI', 'PostgreSQL', 'Redis'],
         link: 'https://www.rbccm.com/en/',
         image: '/experience/rbc-transparent-nov19.png'
     },
     {
         id: 5,
-        title: 'RBC Capital Markets ',
-        role: 'Software Engineeer Intern - Enterprise Market Risk Team',
-        date: 'May 2024 - August 2024',
-        location: 'Toronto, Canada',
-        description:
-            'Developed an web service automating delivery of real-time risk analytics',
-        tech: ['JavaScript', 'Exchange Web Services', 'Redis', 'Express'],
-        link: 'https://www.rbccm.com/en/',
-        image: '/experience/rbc-transparent-nov19.png'
-    },
-    {
-        id: 6,
         title: 'Beats by Dre',
-        date: 'February 2025 - March 2025',
+        date: 'January 2024 - April 2024',
         location: 'California, USA (Remote)',
-        role: 'Data Analytics Intern - Consumer Insights Team',
+        role: 'Strategy & Analytics Intern - Consumer Insights Team',
         description:
-            'Designed Python analytics uncovering Gen Z listening trends to inform product strategy'
-        ,
+            'Analyzed consumer and market data in Python to inform product strategy.',
         tech: ['Python', 'Pandas', 'Matplotlib', 'NumPy'],
         link: 'https://www.beatsbydre.com/ca',
         image: '/experience/beats1.jpg'
+    },
+    {
+        id: 6,
+        title: 'RBC Capital Markets ',
+        role: 'Software Engineer Intern - Enterprise Market Risk Team',
+        date: 'May 2024 - August 2024',
+        location: 'Toronto, Canada',
+        description:
+            'Built a Next.js email notification system for market-risk analytics.',
+        tech: ['JavaScript', 'Exchange Web Services', 'Redis', 'Express'],
+        link: 'https://www.rbccm.com/en/',
+        image: '/experience/rbc-transparent-nov19.png'
     },
     {
         id: 7,
@@ -85,7 +84,7 @@ const projects = [
         date: 'May 2023 - August 2023',
         location: 'Toronto, Canada',
         description:
-            'Improved lean manufacturing processes and built a 3D shipment-yard tracker.',
+            'Built a C# and Blender shipment-yard tracker and supported lean process improvements.',
         tech: ['C#', 'Blender 3D', 'KAIZEN', '3P', '5S'],
         link: 'https://www.canam.com/en/',
         image: '/experience/canam-transparent-nov19.png'
