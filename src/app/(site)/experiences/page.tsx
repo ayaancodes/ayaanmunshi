@@ -55,18 +55,6 @@ const projects = [
     },
     {
         id: 5,
-        title: 'Beats by Dre',
-        date: 'January 2024 - April 2024',
-        location: 'California, USA (Remote)',
-        role: 'Strategy & Analytics Intern - Consumer Insights Team',
-        description:
-            'Analyzed consumer and market data in Python to inform product strategy.',
-        tech: ['Python', 'Pandas', 'Matplotlib', 'NumPy'],
-        link: 'https://www.beatsbydre.com/ca',
-        image: '/experience/beats1.jpg'
-    },
-    {
-        id: 6,
         title: 'RBC Capital Markets ',
         role: 'Software Engineer Intern - Enterprise Market Risk Team',
         date: 'May 2024 - August 2024',
@@ -76,6 +64,18 @@ const projects = [
         tech: ['JavaScript', 'Exchange Web Services', 'Redis', 'Express'],
         link: 'https://www.rbccm.com/en/',
         image: '/experience/rbc-transparent-nov19.png'
+    },
+    {
+        id: 6,
+        title: 'Beats by Dre',
+        date: 'January 2024 - April 2024',
+        location: 'California, USA (Remote)',
+        role: 'Strategy & Analytics Intern - Consumer Insights Team',
+        description:
+            'Analyzed consumer and market data in Python to inform product strategy.',
+        tech: ['Python', 'Pandas', 'Matplotlib', 'NumPy'],
+        link: 'https://www.beatsbydre.com/ca',
+        image: '/experience/beats1.jpg'
     },
     {
         id: 7,

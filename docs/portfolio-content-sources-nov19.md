@@ -23,4 +23,4 @@ This map records the read-only resume sources used for short portfolio explanati
 - Canam: C# and Blender shipment-yard tracker plus lean process improvements; Tesla Cell Software Team resume.
 - Ontario Engineering Competition: ESG infrastructure case leadership; Tesla Cell Software Team resume. The resume confirms the role but gives no month. The portfolio uses 2023 after Canam per the owner's instruction; January is provisional and is not shown as a confirmed month.
 
-Descriptions are single sentences and omit major metrics. Existing media, diagrams, disclosures, and experience cards were retained.
+Detail summaries are single sentences and omit major metrics. Existing team subtitles, media, diagrams, disclosures, patent details, and experience cards were retained.
