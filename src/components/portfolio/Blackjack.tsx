@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { useRef, useState, useEffect, useCallback } from 'react';
-import { score, beginHand, createSession, settleHand, suspendHand, resetBankroll, handReturn, totalBet, payout, allowedActions, playAction, BETS, HAND_STAKE, type Action, type Card, type Round, type GameSession } from '@/lib/blackjack';
+import { score, visibleTableSummary, beginHand, createSession, settleHand, suspendHand, resetBankroll, handReturn, totalBet, payout, allowedActions, playAction, BETS, HAND_STAKE, type Action, type Card, type Round, type GameSession } from '@/lib/blackjack';
 import useMotion from './useMotion';
 
 const suitNames = { '♠': 'spades', '♥': 'hearts', '♦': 'diamonds', '♣': 'clubs' };
@@ -143,7 +143,7 @@ export default function Blackjack() {
             return <div className={`hand player-hand ${active ? 'active-hand' : ''}`} key={index} aria-label={`Your hand ${index + 1}${active ? ', active' : ''}`}><div className="hand-label"><span>{round.hands.length > 1 ? `Hand ${index + 1}` : 'You'}<small>{money(hand.bet)}{active && round.hands.length > 1 ? ' · Playing' : ''}</small></span><b className="hand-total">{cards.length ? score(cards) : '·'}</b></div><div className="playing-cards">{cards.map((card,i) => <PlayingCard key={i} card={card} newest={i === cards.length - 1}/>)}</div>{finished && <p className={`hand-outcome outcome-${hand.outcome}`}>{hand.outcome === 'push' ? 'Push' : hand.outcome === 'win' ? 'Won' : 'Lost'} · {netMoney(payout(hand) - hand.bet)}</p>}</div>;
           })}</div>
         </div>
-        <div className="round-message" role="status" aria-live="polite"><p className="round-quip">{quip}</p><p className="round-result">{busy ? 'Dealing…' : round.result}</p>{finished && <p className="round-payoff">{netMoney(net)} play money overall</p>}</div>
+        <div className="round-message" role="status" aria-live="polite" aria-atomic="true"><p className="round-quip">{quip}</p><p className="round-result">{busy ? 'Dealing…' : round.result}</p><span className="sr-only">{visibleTableSummary(round, frame.playerCounts, frame.dealerCount, frame.reveal)}</span>{finished && <p className="round-payoff">{netMoney(net)} play money overall</p>}</div>
         <div className="game-actions hand-actions"><button type="button" disabled={busy || !actions.hit} onClick={() => move('hit')}>Hit</button><button type="button" disabled={busy || !actions.stand} onClick={() => move('stand')}>Stand</button><button type="button" disabled={busy || !actions.double} onClick={() => move('double')}>Double</button><button type="button" disabled={busy || !actions.split} onClick={() => move('split')}>Split</button></div>
         <div className="next-hand"><label htmlFor="blackjack-bet">Next bet <select id="blackjack-bet" value={bet} disabled={busy || !finished} onChange={event => setBet(Number(event.target.value))}>{BETS.map(value => <option key={value} value={value} disabled={session.balance < value}>{money(value)}</option>)}</select></label><button type="button" disabled={busy || !finished || session.balance < bet} onClick={() => newRound()}>Play again</button></div>
         {exhausted && <div className="game-replenish"><p>Want to keep playing?</p><button type="button" onClick={replenish}>Play with a fresh $20</button></div>}

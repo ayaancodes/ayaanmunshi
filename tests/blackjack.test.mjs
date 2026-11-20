@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { score, deal, shuffledDeck, dealerStep, createSession, beginHand, settleHand, suspendHand, resetBankroll, handReturn, payout, natural, totalBet, allowedActions, playAction } from '../src/lib/blackjack.ts';
+import { score, visibleTableSummary, deal, shuffledDeck, dealerStep, createSession, beginHand, settleHand, suspendHand, resetBankroll, handReturn, payout, natural, totalBet, allowedActions, playAction } from '../src/lib/blackjack.ts';
 const cards = (...ranks) => ranks.map(rank => ({ rank: String(rank), suit: '♠' }));
 const start = (ranks, bet = 100, balance = 2000) => beginHand({ ...createSession(), balance }, cards(...ranks), bet);
 const action = (session, move) => playAction(session, move, session.handId, session.revision);
@@ -192,4 +192,34 @@ test('seeded full rounds conserve wagers/payouts across split, double, hit and c
     assert.ok(session.round.hands.every(h => h.outcome && h.done));
     assert.equal(handReturn(session.round), session.round.hands.reduce((sum,h)=>sum+payout(h),0));
   }
+});
+
+
+test('live summaries are invariant to hidden hole cards and not-yet-displayed player cards', () => {
+  const round = deal(cards('9','6','7','K'));
+  const hidden = visibleTableSummary(round,[1],2,false);
+  const changedHidden = { ...round, dealer:[round.dealer[0],{rank:'A',suit:'♥'}], hands:[{...round.hands[0],cards:[round.hands[0].cards[0],{rank:'Q',suit:'♦'}]}] };
+  assert.equal(visibleTableSummary(changedHidden,[1],2,false), hidden);
+  assert.match(hidden,/Your hand 1 of 1: 9 of spades; total 9/);
+  assert.match(hidden,/Dealer: 6 of spades; total 6, plus a face-down card/);
+  assert.notEqual(visibleTableSummary(changedHidden,[2],2,true), visibleTableSummary(round,[2],2,true));
+  assert.doesNotMatch(visibleTableSummary(round,[0],0,false), /total|spades/);
+});
+test('consecutive hits with unchanged status text still update the announced cards and total', () => {
+  const initial = start(['2','10','3','7','2','3']);
+  const first = move(initial,'hit'), second = move(first,'hit');
+  assert.equal(first.round.result, second.round.result);
+  const a = visibleTableSummary(first.round,[3],2,false);
+  const b = visibleTableSummary(second.round,[4],2,false);
+  assert.notEqual(a,b); assert.match(a,/total 7/); assert.match(b,/total 10/);
+});
+test('split summaries follow the displayed active hand and staged dealer count', () => {
+  const split = move(start(['8','10','8','8','3','10','9']),'split');
+  const second = move(split,'double');
+  const summary = visibleTableSummary(second.round,[3,1],2,false);
+  assert.match(summary,/Your hand 2 of 2: 8 of spades; total 8/);
+  assert.match(summary,/Dealer: 10 of spades; total 10, plus a face-down card/);
+  const revealed = visibleTableSummary(second.round,[3,2],2,true);
+  assert.match(revealed,/Your hand 2 of 2: 8 of spades, 9 of spades; total 17/);
+  assert.match(revealed,/Dealer: 10 of spades, 8 of spades; total 18/);
 });

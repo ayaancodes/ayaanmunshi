@@ -131,3 +131,13 @@ export function resetBankroll(session: GameSession): GameSession {
   if (session.handId !== session.settledHandId || session.balance >= HAND_STAKE) return session;
   return { ...session, balance: STARTING_BALANCE, round: null };
 }
+
+/** Announce only the cards exposed in the current animation frame, never future cards or the hole card. */
+export function visibleTableSummary(round: Round, playerCounts: readonly number[], dealerCount: number, reveal: boolean): string {
+  const suits: Record<Suit, string> = { '♠': 'spades', '♥': 'hearts', '♦': 'diamonds', '♣': 'clubs' };
+  const ranks: Record<string, string> = { A: 'Ace', J: 'Jack', Q: 'Queen', K: 'King' };
+  const describe = (cards: Card[]) => cards.length ? `${cards.map(card => `${ranks[card.rank] ?? card.rank} of ${suits[card.suit]}`).join(', ')}; total ${score(cards)}` : 'no visible cards yet';
+  const player = round.hands[round.active].cards.slice(0, playerCounts[round.active] ?? 0);
+  const dealer = round.dealer.slice(0, reveal ? dealerCount : Math.min(dealerCount, 1));
+  return `Your hand ${round.active + 1} of ${round.hands.length}: ${describe(player)}. Dealer: ${describe(dealer)}${!reveal && dealerCount > 1 ? ', plus a face-down card' : ''}.`;
+}
